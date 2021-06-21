@@ -1,0 +1,25 @@
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+a { text-decoration: none; color: inherit; }
+
+h1 { text-align: left; font-weight: 400; font-size: 24px; }
+
+body { width: 800px; margin: 20px auto; margin-top: 50px; }
+
+img { margin-top: 20px; width: 185px; height: 260px; object-fit: cover; }
+
+#information { font-size: 24px; font-weight: 300; }
+
+#information h1 { text-align: left; font-weight: 500; font-size: 36px; }
+
+#information h1::after { content: ""; position: absolute; left: 0px; width: 800px; height: 3px; bottom: -10px; background-color: #666; }
+
+.movieBox { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 800px; margin: 20px auto; text-align: center; }
+
+.movieBox .movieInfoBox { font-size: 12px; text-align: left; color: #222; }
+
+.movieBox .movieInfoBox h2 { font-size: 24px; font-weight: 700; line-height: 30px; margin: 40px auto; }
+
+.movieBox .movieInfoBox h2::after { content: ""; position: relative; left: 0px; width: 600px; height: 3px; bottom: -10px; background-color: #ccc; }
+
+.movieBox .movieInfoBox span { font-size: 14px; font-weight: 700; line-height: 20px; }

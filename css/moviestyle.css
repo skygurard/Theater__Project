@@ -1,0 +1,31 @@
+body { width: 800px; font-family: "Roboto","Noto Sans KR"; font-size: 16px; border: 3px solid black; margin: 20px auto; padding: 0 10px; }
+
+li { list-style: none; }
+
+a { text-decoration: none; color: inherit; }
+
+img { margin-top: 20px; width: 185px; height: 260px; object-fit: cover; }
+
+#movie { margin: 30px 10px; border: 3px solid red; }
+
+#movie .titleBox { position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; margin: 20px 10px; }
+
+#movie .titleBox .titleHeader { margin-left: 20px; }
+
+#movie .titleBox .titleHeader span { position: absolute; font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+
+#movie .titleBox .subMenu a { padding: 3px; margin: 0 3px; }
+
+#movie .now { margin-top: 30px; margin-left: 20px; }
+
+#movie .now::before { margin: 20px 0; content: ""; display: block; width: 750px; border-bottom: 1px solid black; }
+
+#movie .container { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-pack: distribute; justify-content: space-around; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+
+#movie .container .movieList { border: 1px solid blue; width: 200px; margin: 20px 20px; }
+
+#movie .container .movieList .imgBox img { margin-top: 20px; width: 185px; height: 260px; -o-object-fit: cover; object-fit: cover; }
+
+#movie .container .movieList .imgContents { font-size: 12px; padding: 2px; line-height: 1.5; }
+
+#movie .container .movieList .imgContents .ticket { padding: 5px 0; }
