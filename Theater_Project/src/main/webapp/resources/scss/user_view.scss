@@ -1,0 +1,84 @@
+body {
+    width: 800px;
+    font-family: "Roboto","Noto Sans KR";
+    font-size:16px;
+    border: 3px solid black;
+    margin:20px auto;
+    padding: 0 10px;
+}
+
+li {
+    list-style:none;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+img {
+    margin-top: 20px; width: 185px; height: 260px; object-fit: cover;
+}
+
+
+
+#movie {
+    margin: 30px 0;
+    border: 3px solid red;
+    padding:10px;
+    .titleBox {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        
+        .titleHeader {
+            span {
+                position: relative;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                &::after {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    content: "";
+                    display: block;
+                    width: 750px;
+                    border-bottom: 1px solid black;
+                }
+            }
+        } 
+    }
+    .movieBox {
+        .movieImgBox {
+            img {
+                margin: 20px 0;
+                width: 185px;
+                height: 260px;
+                object-fit: cover;
+            }
+        }
+        .movieContents {
+            font-size: 12px;
+            border: 1px solid blue;
+            line-height: 1.5;
+            .movieTitleBox {
+
+            }
+            .movieInfoBox {
+
+            }
+            .ticket {
+                margin: 10px 0;
+                font-size: 16px;
+                a {
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+    .info {
+        margin: 20px 0; 
+    }
+}
+
