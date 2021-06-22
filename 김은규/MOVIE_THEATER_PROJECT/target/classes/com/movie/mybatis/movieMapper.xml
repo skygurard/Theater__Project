@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.mybatis.movieMapper">
+
+<!-- 	등록된 영화리스트보여주기 -->
+	<select id= "getAllMovie" parameterType="hashMap" resultType="MovieBean">
+		SELECT *
+		FROM (
+		        SELECT A.*,
+		            ROWNUM AS RNUM
+		        FROM (
+		                SELECT  NO
+		                      , TITLE
+		                      , DIRECTOR
+		                      , ACTOR
+		                      , RELEASEDATE
+		                      , RUNNINGTIME
+		                      , AGE
+		                      , COUNTRY
+		                      , INFO
+		                      , PROFILEIMG
+		                      , GENRE
+		                      , ENDDATE
+		                FROM MOVIE
+		                ORDER BY NO desc
+		            ) A 
+		        WHERE ROWNUM <![CDATA[<=]]> #{end}
+		    )
+		WHERE RNUM <![CDATA[>=]]> #{start}
+	</select>
+	
+
+
+	
+	
+	<!-- 영화등록 -->
+	<insert id = "insertMovie" parameterType="MovieBean">
+		INSERT INTO MOVIE(
+			  NO
+			, TITLE
+			, DIRECTOR
+			, ACTOR
+			, RELEASEDATE
+			, RUNNINGTIME
+			, AGE
+			, COUNTRY
+			, INFO
+			, PROFILEIMG
+ 			, GENRE
+ 			, ENDDATE
+		)
+		VALUES (
+			  MOVIE_SEQ.NEXTVAL
+			, #{title}
+			, #{director}
+			, #{actor}
+			, #{releaseDate}
+			, #{runningTime}
+			, #{age}
+			, #{country}
+			, #{info}
+			, #{profileImg}
+			, #{genre}
+			, #{endDate}
+		)
+	</insert>
+<!-- 	선택한 영화하나보여주기 -->
+	<select id = "getSelectOneMovie" parameterType="Integer" resultType="MovieBean">
+		SELECT
+			NO
+			, TITLE
+			, DIRECTOR
+			, ACTOR
+			, RELEASEDATE
+			, RUNNINGTIME
+			, AGE
+			, COUNTRY
+			, INFO
+			, PROFILEIMG
+ 			, GENRE
+ 			, ENDDATE
+		FROM MOVIE
+		WHERE NO = #{no}
+	</select>
+<!-- 	등록된영화삭제하기 -->
+	<delete id="deleteMovie" parameterType="Integer">
+		DELETE FROM MOVIE WHERE NO = #{no}
+	</delete>
+<!-- 	영화정보 수정하기 -->
+	<update id="updateMovie" parameterType="MovieBean">
+		UPDATE MOVIE SET (
+			TITLE
+		  ,	DIRECTOR
+		  , ACTOR
+		  , RELEASEDATE
+		  , RUNNINGTIME
+		  , AGE
+		  , COUNTRY
+		  , INFO
+		  , PROFILEIMG
+		  , GENRE
+		  , ENDDATE		
+		)
+		VALUES (
+			#{title}
+		  , #{director}
+		  , #{actor}
+		  , #{releaseDate}
+		  , #{runningTime}
+		  , #{age}
+		  , #{country}
+		  , #{info}
+		  , #{profileImg}
+		  , #{genre}
+		  , #{endDate}
+		)
+	</update>
+
+	<!-- 전체 영화리스트 수 -->
+	<select id="getTotal" resultType="Integer">
+		SELECT COUNT(*) AS TOTAL FROM MOVIE
+	</select>
+</mapper>
