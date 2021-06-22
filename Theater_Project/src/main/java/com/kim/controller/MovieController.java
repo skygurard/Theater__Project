@@ -49,12 +49,12 @@ public class MovieController {
 	public String insertMovie(MovieBean movieBean,
 							  HttpServletRequest request,
 							  HttpServletResponse response,
-							  MultipartFile multipartProfileImg) throws IOException {
+							  MultipartFile multipartPosterImg) throws IOException {
+		
 		
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
-		
 		String[] genreList = request.getParameterValues("genre");
 		String genreText   ="";
 		
@@ -73,16 +73,16 @@ public class MovieController {
 		
 		String context 			= request.getContextPath();
 		String fileRoot 		= "C:\\movieproject_image\\";
-		String originalFileName = multipartProfileImg.getOriginalFilename();
+		String originalFileName = multipartPosterImg.getOriginalFilename();
 		String extension 		= FilenameUtils.getExtension(originalFileName);
 		String savedFileName 	= dbDate+"."+extension;
 		File targetFile 		= new File(fileRoot + savedFileName);
 		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
 
-		movieBean.setProfileImg(dbSavedFile);
+		movieBean.setPosterImg(dbSavedFile);
 		
 		try {
-			InputStream fileStream = multipartProfileImg.getInputStream();
+			InputStream fileStream = multipartPosterImg.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 		} catch(IOException e) {
 			FileUtils.deleteQuietly(targetFile);
@@ -181,7 +181,7 @@ public class MovieController {
 ///////////////////////////////////////////////////////////////////////
 	// user페이지 매핑
 	@GetMapping("/ListMovie.do")
-	public String listMovie(HttpServletRequest request, Model model) {
+	public String listMovie(MovieBean movieBean, HttpServletRequest request, Model model) {
 	
 	String clickedPage = request.getParameter("clickedPage");
 	int total 		   = 0;

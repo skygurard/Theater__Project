@@ -15,57 +15,36 @@
 		                      , DIRECTOR
 		                      , ACTOR
 		                      , RELEASEDATE
+		                      , ENDDATE
 		                      , RUNNINGTIME
-		                      , AGE
 		                      , COUNTRY
 		                      , INFO
-		                      , PROFILEIMG
+		                      , POSTERIMG
 		                      , GENRE
-		                      , ENDDATE
+		                      , AGE
 		                FROM MOVIE
-		                ORDER BY NO desc
+		                ORDER BY NO DESC
 		            ) A 
 		        WHERE ROWNUM <![CDATA[<=]]> #{end}
 		    )
 		WHERE RNUM <![CDATA[>=]]> #{start}
 	</select>
 	
-	<!-- 
-	<select id= "getAllMovie" parameterType="hashMap" resultType="MovieBean">
-		SELECT  NO
-			  , TITLE
-			  , DIRECTOR
-			  , ACTOR
-			  , RELEASEDATE
-			  , RUNNINGTIME
-			  , AGE
-			  , COUNTRY
-			  , INFO
-			  , PROFILEIMG
-			  , GENRE
-			  , ENDDATE
-		FROM MOVIE 
-		ORDER BY NO DESC
-	</select>
-	 -->
-
-	
-	
 	<!-- 영화등록 -->
 	<insert id = "insertMovie" parameterType="MovieBean">
 		INSERT INTO MOVIE(
 			  NO
-			, TITLE
-			, DIRECTOR
-			, ACTOR
-			, RELEASEDATE
-			, RUNNINGTIME
-			, AGE
-			, COUNTRY
-			, INFO
-			, PROFILEIMG
- 			, GENRE
- 			, ENDDATE
+            , TITLE
+            , DIRECTOR
+            , ACTOR
+            , RELEASEDATE
+            , ENDDATE
+            , RUNNINGTIME
+            , COUNTRY
+            , INFO
+            , POSTERIMG
+            , GENRE
+            , AGE
 		)
 		VALUES (
 			  MOVIE_SEQ.NEXTVAL
@@ -73,29 +52,28 @@
 			, #{director}
 			, #{actor}
 			, #{releaseDate}
+			, #{endDate}
 			, #{runningTime}
-			, #{age}
 			, #{country}
 			, #{info}
-			, #{profileImg}
+			, #{posterImg}
 			, #{genre}
-			, #{endDate}
+			, #{age}
 		)
 	</insert>
 	<select id = "getSelectOneMovie" parameterType="Integer" resultType="MovieBean">
-		SELECT
-			NO
-			, TITLE
-			, DIRECTOR
-			, ACTOR
-			, RELEASEDATE
-			, RUNNINGTIME
-			, AGE
-			, COUNTRY
-			, INFO
-			, PROFILEIMG
- 			, GENRE
- 			, ENDDATE
+		SELECT  NO
+              , TITLE
+              , DIRECTOR
+              , ACTOR
+              , RELEASEDATE
+              , ENDDATE
+              , RUNNINGTIME
+              , COUNTRY
+              , INFO
+              , POSTERIMG
+              , GENRE
+              , AGE
 		FROM MOVIE
 		WHERE NO = #{no}
 	</select>
@@ -106,30 +84,30 @@
 	
 	<update id="updateMovie" parameterType="MovieBean">
 		UPDATE MOVIE SET (
-			TITLE
-		  ,	DIRECTOR
-		  , ACTOR
-		  , RELEASEDATE
-		  , RUNNINGTIME
-		  , AGE
-		  , COUNTRY
-		  , INFO
-		  , PROFILEIMG
-		  , GENRE
-		  , ENDDATE		
+			, TITLE
+            , DIRECTOR
+            , ACTOR
+            , RELEASEDATE
+            , ENDDATE
+            , RUNNINGTIME
+            , COUNTRY
+            , INFO
+            , POSTERIMG
+            , GENRE
+            , AGE
 		)
 		VALUES (
 			#{title}
 		  , #{director}
 		  , #{actor}
 		  , #{releaseDate}
+		  , #{endDate}
 		  , #{runningTime}
-		  , #{age}
 		  , #{country}
 		  , #{info}
-		  , #{profileImg}
+		  , #{posterImg}
 		  , #{genre}
-		  , #{endDate}
+		  , #{age}
 		)
 	</update>
 

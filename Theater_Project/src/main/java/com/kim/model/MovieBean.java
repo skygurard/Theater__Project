@@ -20,11 +20,11 @@ public class MovieBean {
 	private String director;
 	private String actor;
 	private String runningTime;
-	private String age;
 	private String releaseDate;
 	private String endDate;
 	private String country;
+	private String posterImg;
 	private String genre;
-	private String profileImg;
+	private String age;
 	
 }

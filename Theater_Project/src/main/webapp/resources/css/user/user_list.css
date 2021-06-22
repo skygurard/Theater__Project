@@ -26,6 +26,8 @@ a { text-decoration: none; color: inherit; }
 
 #movie .container .movieList .imgContents { font-size: 12px; padding: 2px; line-height: 1.5; }
 
+#movie .container .movieList .imgContents .movieTitle { font-size: 16px; padding: 2px; line-height: 1.5; }
+
 #movie .container .movieList .imgContents .ticket { padding: 5px 0; }
 
 .pagination { text-align: center; margin: 10px; font-size: 16px; font-weight: 500px; }
