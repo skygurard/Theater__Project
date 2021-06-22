@@ -79,10 +79,10 @@
 					<tr>
 						<th>연령제한</th>
 						<td>
-							<input type="radio" name="age" value="전체관람가"><span>전체관람가</span>
+							<input type="radio" name="age" value="전체관람가"><span>전체 관람가</span>
 							<input type="radio" name="age" value="12"><span>12세 이상</span>
 							<input type="radio" name="age" value="15"><span>15세 이상</span>
-							<input type="radio" name="age" value="19"><span>19세 이상</span>
+							<input type="radio" name="age" value="19"><span>청소년 관람불가</span>
 						</td>
 					</tr>
 					<tr>

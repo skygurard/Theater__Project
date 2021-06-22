@@ -43,16 +43,16 @@
 					
 					<c:choose>
 						<c:when test="${movieBean.age == '12'}">
-							<span>12세 관람가 /</span>
+							<span>12세 관람가 / </span>
 						</c:when>
 						<c:when test="${movieBean.age == '15'}">
-							<span>15세 관람가 /</span>
+							<span>15세 관람가 / </span>
 						</c:when>
 						<c:when test="${movieBean.age == '19'}">
-							<span>청소년 관람불가 /</span>
+							<span>청소년 관람불가 / </span>
 						</c:when>
 						<c:otherwise>
-							<span>전체 관람가</span>
+							<span>전체 관람가 / </span>
 						</c:otherwise>
 					</c:choose>
 					<span>${movieBean.runningTime} / </span>
