@@ -20,13 +20,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.movie.model.movieBean;
-import com.movie.model.movieDao;
+import com.movie.model.MovieBean;
+import com.movie.model.MovieDao;
 import com.movie.utils.ScriptWriterUtil;
 import com.movie.utils.PagingUtil;
 
@@ -34,10 +36,10 @@ import com.movie.utils.PagingUtil;
 public class MovieController {
 
 	@Autowired
-	movieBean movieBean;
+	MovieBean movieBean;
 	
 	@Autowired
-	movieDao movieDao;
+	MovieDao movieDao;
 
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
@@ -46,15 +48,14 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/InsertMovie.do")
-	public String insertMovie(movieBean movieBean,
+	public String insertMovie(MovieBean movieBean,
 							  HttpServletRequest request,
 							  HttpServletResponse response,
-							  MultipartFile multipartProfileImg) throws IOException {
+							  MultipartFile multipartPosterImg) throws IOException {
 		
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
-		
 		String[] genreList = request.getParameterValues("genre");
 		String genreText   ="";
 		
@@ -73,16 +74,16 @@ public class MovieController {
 		
 		String context 			= request.getContextPath();
 		String fileRoot 		= "C:\\movieproject_image\\";
-		String originalFileName = multipartProfileImg.getOriginalFilename();
+		String originalFileName = multipartPosterImg.getOriginalFilename();
 		String extension 		= FilenameUtils.getExtension(originalFileName);
 		String savedFileName 	= dbDate+"."+extension;
 		File targetFile 		= new File(fileRoot + savedFileName);
 		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
 
-		movieBean.setProfileImg(dbSavedFile);
+		movieBean.setPosterImg(dbSavedFile);
 		
 		try {
-			InputStream fileStream = multipartProfileImg.getInputStream();
+			InputStream fileStream = multipartPosterImg.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 		} catch(IOException e) {
 			FileUtils.deleteQuietly(targetFile);
@@ -109,7 +110,7 @@ public class MovieController {
 		
 		HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
 
-		List<movieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
+		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
 		
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("numbering", dataMap.get("numbering"));
@@ -180,16 +181,20 @@ public class MovieController {
 	
 ///////////////////////////////////////////////////////////////////////
 	// user페이지 매핑
-	@GetMapping("/ListMovie.do")
-	public String listMovie(HttpServletRequest request, Model model) {
 	
+	@GetMapping("/ListMovie.do")
+	public String listMovie(MovieBean movieBean, HttpServletRequest request, Model model) {
+	//list?f=title&q=a
+	
+		
+		
 	String clickedPage = request.getParameter("clickedPage");
 	int total 		   = 0;
 	total 			   = movieDao.getTotal();
 	
 	HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
 	
-	List<movieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
+	List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
 	
 	model.addAttribute("movieList", movieList);
 	model.addAttribute("numbering", dataMap.get("numbering"));
@@ -229,5 +234,3 @@ public class MovieController {
 //	}
 	
 }
-	
-

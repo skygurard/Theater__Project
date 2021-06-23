@@ -39,16 +39,30 @@
 				end="${movieList.size()}" step="1" varStatus="status">
 				<div class="movieList">
 					<div class="imgBox">
-						<a href="ViewMovie.do?no=${movieBean.no}"><img src="${movieBean.profileImg}"></a>
+						<a href="ViewMovie.do?no=${movieBean.no}"><img src="${movieBean.posterImg}"></a>
 					</div>
 					<div class="imgContents">
-						<div><a href="">${movieBean.title}</a></div>
-						<div>
-							<span>예매율</span>
-							<span>예매율 변수넣기</span>
-						</div>
+						<div class="movieTitle"><a href="">${movieBean.title}</a></div>
+						
+						<c:choose>
+							<c:when test="${movieBean.age == '12'}">
+								<div>12세 관람가</div>
+							</c:when>
+							<c:when test="${movieBean.age == '15'}">
+								<div>15세 관람가</div>
+							</c:when>
+							<c:when test="${movieBean.age == '19'}">
+								<div>청소년 관람불가</div>
+							</c:when>
+							<c:otherwise>
+								<div>전체 관람가</div>
+							</c:otherwise>
+						</c:choose>
+						
 						<div>${movieBean.releaseDate}</div>
-						<div class="ticket"><a href="">예매하기</a></div>
+						<div class="ticket">
+							<a href="">예매하기</a>
+						</div>
 					</div>
 				</div>
 			</c:forEach>

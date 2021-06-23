@@ -35,9 +35,10 @@
 				<tbody>
 					<c:forEach var="movieBean" items="${movieList}" >
 						<tr>
-							<td><img src ="${movieBean.profileImg}" class="profileImg"></td>
+							<td><img src ="${movieBean.posterImg}" class="posterImg"></td>
 							<td>${movieBean.no}</td>
 							<td><a href="ViewMovieAdmin.do?no=${movieBean.no}">${movieBean.title}</a></td>
+							<td>${movieBean.age}</td>
 							<td>${movieBean.releaseDate}</td>
 							<td>${movieBean.endDate}</td>
 						</tr>

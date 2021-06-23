@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<th>사진</th>
-						<td><input id="profileImg" type="file" name="multipartProfileImg" value="${movieBean.profileImg}"></td>
+						<td><input id="posterImg" type="file" name="multipartPosterImg" value="${movieBean.posterImg}"></td>
 					</tr>
 				</tbody>
 			</table>
