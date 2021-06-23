@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<th>사진</th>
-						<td><img src ="${movieBean.posterImg}"></td>
+						<td><img src ="${movieBean.profileImg}"></td>
 					</tr>
 
 				</tbody>

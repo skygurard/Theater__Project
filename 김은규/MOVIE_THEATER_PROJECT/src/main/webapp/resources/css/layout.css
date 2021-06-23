@@ -13,27 +13,10 @@ a {
 	text-decoration:none;
 	color:inherit;
 }
-
-.genreList {
-	margin: 0 2px;
-}
-
 table {
 	border: none;
 	border-collapse: collapse;
 	border-top: 1px solid #d9d9d9;
-}
-
-span {
-	
-	padding:3px;
-	margin-right:2px;
-}
-
-textarea {
-	width:580px;
-	height:300px;
-	resize:none;
 }
 
 table tr th {
@@ -59,7 +42,7 @@ table tr td select {
 }
 
 .formBox {
-	width: 800px;
+	width: 1000px;
 	margin: 100px auto;
 }
 
@@ -124,6 +107,11 @@ table tr td select {
 	text-align: left;
 	padding-left:50px;
 }
+#list tbody td.space1 {padding-left:50px;}
+#list tbody td.space2 {padding-left:70px;}
+#list tbody td.space3 {padding-left:90px;}
+#list tbody td.space4 {padding-left:110px;}
+#list tbody td.space5 {padding-left:130px;}
 
 #list tbody tr:hover {
 	background-color:#000;
@@ -218,12 +206,41 @@ table tr td select {
 }
 
 
-.btns input {
-	cursor: pointer;
-	
+.profileImg {
+	width:50px;
+	height:50px;
+	object-fit:contain;
+}
+.profileImgBox {
+	text-align:center;	padding:50px 0;	
+}
+.profileImgBox .profileImg {
+	width:300px;
+	height:300px;
+}
+li {
+	list-style:none;
+}
+#memberList {
+	position:relative;	min-height:800px;
+}
+#memberList li {
+	position:absolute;	top:50px;	left:50px;	background:#fff;
+}
+#memberList li a {
+	display:block;	width:250px;	height:350px;	border:1px solid #ccc;	border-radius:5px;
+	box-shadow:5px 5px 5px rgba(0,0,0,0.1);	text-align:center;	padding:20px;
+}
+#memberList li .img img {
+	width:100px;	height:100px;	object-fit:contain;
+}
+#memberList li h2 {
+	margin:20px 0;
 }
 
-
+a:hover {
+	text-decoration:none !important;
+}
 
 
 

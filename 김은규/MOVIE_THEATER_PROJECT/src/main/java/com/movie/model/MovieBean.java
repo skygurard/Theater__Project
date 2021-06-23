@@ -2,9 +2,10 @@ package com.movie.model;
 
 import org.springframework.stereotype.Component;
 
-import com.movie.model.MovieBean;
 
 import lombok.Data;
+
+
 
 @Component
 @Data

@@ -2,11 +2,9 @@ package com.movie.config;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
-import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -73,14 +71,6 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
 		encodingFilter.setEncoding("UTF-8");
 		return new Filter[] {encodingFilter};
-	}
-	
-	@Override
-	protected void customizeRegistration(Dynamic registration) {
-		super.customizeRegistration(registration);
-		//업로드 되는 파일 용량 체크 하기...
-		MultipartConfigElement config1 = new MultipartConfigElement(null, 1024*1024*100, 1024*1024*1000, 0);
-		registration.setMultipartConfig(config1);
 	}
 }
 

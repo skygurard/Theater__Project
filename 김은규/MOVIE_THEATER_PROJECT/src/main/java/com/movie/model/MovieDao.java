@@ -19,7 +19,7 @@ public class MovieDao {
 
 	static {
 		try {
-			String resource = "com/movie/mybatis/config.xml";
+			String resource = "com/kim/mybatis/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {

@@ -20,10 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,6 +50,7 @@ public class MovieController {
 							  HttpServletRequest request,
 							  HttpServletResponse response,
 							  MultipartFile multipartPosterImg) throws IOException {
+		
 		
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
@@ -181,13 +180,9 @@ public class MovieController {
 	
 ///////////////////////////////////////////////////////////////////////
 	// user페이지 매핑
-	
 	@GetMapping("/ListMovie.do")
 	public String listMovie(MovieBean movieBean, HttpServletRequest request, Model model) {
-	//list?f=title&q=a
 	
-		
-		
 	String clickedPage = request.getParameter("clickedPage");
 	int total 		   = 0;
 	total 			   = movieDao.getTotal();

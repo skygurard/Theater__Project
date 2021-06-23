@@ -20,9 +20,9 @@ import com.movie.model.movieReserveDao;
 import com.movie.utils.ScriptWriterUtil;
 
 @Controller
-public class movieReserveController {
+public class MovieReserveController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(movieReserveController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MovieReserveController.class);
 	//이걸 외부에서 주입받아서 쓰고 싶다.  Spring Container에 등록 해놓고 여기서 땡겨 쓰고 싶다.
 	@Autowired
 	movieReserveDao movieReserveDao;

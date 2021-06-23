@@ -115,5 +115,4 @@
 	<select id="getTotal" resultType="Integer">
 		SELECT COUNT(*) AS TOTAL FROM MOVIE
 	</select>
-	
 </mapper>
