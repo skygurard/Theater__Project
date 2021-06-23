@@ -11,9 +11,6 @@ import lombok.Data;
 @Data
 public class MovieBean {
 
-	// Ctrl + Shift + x 대문자
-	// Ctrl + Shift + y 소문자
-	// jsp name = get,set name = db 컬럼이름
 	private int    no;
 	private String title;
 	private String info;
@@ -26,5 +23,4 @@ public class MovieBean {
 	private String posterImg;
 	private String genre;
 	private String age;
-	
 }

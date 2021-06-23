@@ -13,6 +13,14 @@ a {
 	text-decoration:none;
 	color:inherit;
 }
+
+textarea {
+	width:470px;
+	height:250px;
+	resize:none;
+}
+
+
 table {
 	border: none;
 	border-collapse: collapse;

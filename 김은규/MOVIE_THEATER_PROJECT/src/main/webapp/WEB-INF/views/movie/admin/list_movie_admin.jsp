@@ -18,8 +18,9 @@
 			<table>
 				<colgroup>
 					<col style="width:50px">
+					<col style="width:70px">
+					<col style="width:230px">
 					<col style="width:150px">
-					<col style="width:300px">
 					<col style="width:150px">
 					<col style="width:150px">
 				</colgroup>
@@ -30,6 +31,7 @@
 						<th>제목</th>
 						<th>개봉일</th>
 						<th>상영종료일</th>
+						<th>연령가</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,13 +40,14 @@
 							<td><img src ="${movieBean.posterImg}" class="posterImg"></td>
 							<td>${movieBean.no}</td>
 							<td><a href="ViewMovieAdmin.do?no=${movieBean.no}">${movieBean.title}</a></td>
-							<td>${movieBean.age}</td>
 							<td>${movieBean.releaseDate}</td>
 							<td>${movieBean.endDate}</td>
+							<td>${movieBean.age}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			
 			<div class="pagination">
 			<c:if test="${clickedPage != 1}">
 				<a href="ListMovieAdmin.do?clickedPage=${clickedPage - 1}"> <span

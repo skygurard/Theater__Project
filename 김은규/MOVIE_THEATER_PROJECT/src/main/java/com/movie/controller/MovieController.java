@@ -29,6 +29,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.model.MovieBean;
 import com.movie.model.MovieDao;
+import com.movie.model.admin.AdminBean;
+import com.movie.model.admin.AdminDao;
 import com.movie.utils.PagingUtil;
 import com.movie.utils.ScriptWriterUtil;
 
@@ -40,6 +42,12 @@ public class MovieController {
 	
 	@Autowired
 	MovieDao movieDao;
+	
+	@Autowired
+	AdminBean adminBean;
+	
+	@Autowired
+	AdminDao adminDao;
 
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
@@ -56,8 +64,8 @@ public class MovieController {
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
-		String[] genreList = request.getParameterValues("genre");
-		String genreText   ="";
+		String[] genreList 			= request.getParameterValues("genre");
+		String genreText   			= "";
 		
 		if(genreList != null) {
 			for(int i=0; i<genreList.length;i++) {
@@ -67,7 +75,7 @@ public class MovieController {
 					genreText += "/"+ genreList[i];
 				}
 			}
-			movieBean.setGenre(genreText); //  genreText = 공포/스릴러/범죄
+			movieBean.setGenre(genreText);
 		} else {
 			movieBean.setGenre("");
 		};
@@ -162,7 +170,7 @@ public class MovieController {
 	
 //	@GetMapping("/DeleteMovie.do")
 //	public String deleteMovie(int no, Model model, String password, HttpServletResponse response) throws IOException {
-//		//String dbPassword = AdminDao.getPasswordAdmin(no); Admin테이블에서 pw가져오기
+//		String dbPassword = adminDao.getPasswordAdmin(no);
 //		if(dbPassword.equals(password)){
 //			int result = movieDao.deleteMovie(no);
 //			if(result>0) {
