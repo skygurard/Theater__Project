@@ -19,7 +19,7 @@ public class MovieDao {
 
 	static {
 		try {
-			String resource = "com/kim/mybatis/config.xml";
+			String resource = "com/movie/mybatis/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
@@ -83,7 +83,7 @@ public class MovieDao {
 	
 
 	
-	public int getTotal() {
+	public int getTotalMovie() {
 		int total = 0;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		total = sqlSession.selectOne("getTotal");

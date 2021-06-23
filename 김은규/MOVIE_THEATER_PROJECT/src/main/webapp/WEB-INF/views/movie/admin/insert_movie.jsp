@@ -26,24 +26,24 @@
 <body>
 	<div class="formBox">
 		<h2>영화등록</h2>
-		<form action="InsertMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data" value = "test">
+		<form action="InsertMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data">
 			<table>
 				<colgroup>
-					<col style="width: 200px">
-					<col style="width: 600px">
+					<col style="width: 300px">
+					<col style="width: 500px">
 				</colgroup>
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title" id="userName" value="test"></td>
+						<td><input type="text" name="title" id="userName" value="제목"></td>
 					</tr>
 					<tr>
 						<th>감독</th>
-						<td><input type="text" name="director" id="userEmail" value="test"></td>
+						<td><input type="text" name="director" id="userEmail" value="감독"></td>
 					</tr>
 					<tr>
 						<th>배우</th>
-						<td><input type="text" name="actor" id="subject" value="test"></td>
+						<td><input type="text" name="actor" id="subject" value="배우"></td>
 					</tr>
 					<tr>
 					<th>장르</th>
@@ -74,23 +74,28 @@
 					</tr>
 					<tr>
 						<th>러닝타임</th>
-						<td><input type="text" id="runningTime" name="runningTime" value="test"></td>
+						<td><input type="text" id="runningTime" name="runningTime" value="러닝타임"></td>
 					</tr>
 					<tr>
 						<th>연령제한</th>
-						<td><input type="text" id="age" name="age" value="test"></td>
+						<td>
+							<input type="radio" name="age" value="전체관람가"><span>전체 관람가</span>
+							<input type="radio" name="age" value="12"><span>12세 이상</span>
+							<input type="radio" name="age" value="15"><span>15세 이상</span>
+							<input type="radio" name="age" value="19"><span>청소년 관람불가</span>
+						</td>
 					</tr>
 					<tr>
 						<th>국가</th>
-						<td><input type="text" id="country" name="country" value="test"></td>
+						<td><input type="text" id="country" name="country" value="국가"></td>
 					</tr>
 					<tr>
 						<th>영화정보</th>
-						<td><textarea name="info" id="info" value="test"></textarea></td>
+						<td><textarea name="info" id="info" value="영화정보"></textarea></td>
 					</tr>
 					<tr>
 						<th>사진</th>
-						<td><input id="profileImg" type="file" name="multipartProfileImg"></td>
+						<td><input id="posterImg" type="file" name="multipartPosterImg"></td>
 					</tr>
 				</tbody>
 			</table>

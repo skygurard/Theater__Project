@@ -4,6 +4,7 @@
 	<properties resource="com/movie/mybatis/db.properties" />
 	<typeAliases>
 		<typeAlias type="com.movie.model.MovieBean" alias="MovieBean" />
+		<typeAlias type="com.movie.model.MovieDao" alias="MovieDao" />
 		<typeAlias type="com.movie.model.movieReserveBean" alias="movieReserveBean" />
 		<typeAlias type="com.movie.model.board.ReplyBoardBean" alias="ReplyBoardBean"   />
 		<typeAlias type="com.movie.model.member.MemberBean" alias="MemberBean"   />

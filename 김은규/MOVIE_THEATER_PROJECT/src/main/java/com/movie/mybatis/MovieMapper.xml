@@ -112,7 +112,7 @@
 	</update>
 
 	<!-- 전체 영화리스트 수 -->
-	<select id="getTotal" resultType="Integer">
+	<select id="getTotalMovie" resultType="Integer">
 		SELECT COUNT(*) AS TOTAL FROM MOVIE
 	</select>
 </mapper>
