@@ -30,7 +30,7 @@ public class movieReserveController {
 	@Autowired
 	movieReserveBean movieReserveBean;
 	
-	@GetMapping("/movieReserveList.do")
+	@GetMapping("/MovieReserveList.do")
 	public String movieReserveList(Model model) {
 		//MemberDao memberDao = new MemberDao();
 		List<movieReserveBean> movieReserveList = movieReserveDao.showAllReserveMovie();

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		location.href="movieReserveList.do";
+		location.href="MovieReserveList.do";
 	</script>
 </body>
 </html>
