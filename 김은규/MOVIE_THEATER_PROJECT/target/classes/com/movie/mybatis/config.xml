@@ -8,6 +8,7 @@
 		<typeAlias type="com.movie.model.movieReserveBean" alias="movieReserveBean" />
 		<typeAlias type="com.movie.model.board.ReplyBoardBean" alias="ReplyBoardBean"   />
 		<typeAlias type="com.movie.model.member.MemberBean" alias="MemberBean"   />
+		<typeAlias type="com.movie.model.member.MemberDao" alias="MemberDao"   />
 		<typeAlias type="com.movie.model.admin.AdminBean" alias="AdminBean"   />
 	</typeAliases>
 	<environments default="development">

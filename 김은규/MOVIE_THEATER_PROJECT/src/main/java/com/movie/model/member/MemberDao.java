@@ -18,7 +18,7 @@ public class MemberDao {
 
 	static {
 		try {
-			String resource = "com/jjang051/mybatis/config.xml";
+			String resource = "com/movie/mybatis/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {

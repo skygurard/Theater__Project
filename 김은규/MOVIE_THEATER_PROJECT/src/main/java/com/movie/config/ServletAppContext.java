@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @ComponentScan("com.movie.controller")
 @ComponentScan("com.movie.model")
+@ComponentScan("com.movie.model.board")
+@ComponentScan("com.movie.model.member")
 public class ServletAppContext implements WebMvcConfigurer {
 	//viewResolver
 	@Override
@@ -27,6 +29,8 @@ public class ServletAppContext implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 		registry.addResourceHandler("/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/movieProject/**").addResourceLocations("file:///C:/movieproject_image/");
+		registry.addResourceHandler("/summernoteImage/**").addResourceLocations("file:///C:/summernote/");
+        registry.addResourceHandler("/miniProject/**").addResourceLocations("file:///C:/miniproject_image/");
 	}
 	
 	@Bean
