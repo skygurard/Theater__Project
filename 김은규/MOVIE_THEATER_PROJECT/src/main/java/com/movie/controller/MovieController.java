@@ -44,7 +44,7 @@ public class MovieController {
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
-		return "admin/insert_movie";
+		return "movie/admin/insert_movie";
 	}
 	
 	@RequestMapping("/InsertMovie.do")
