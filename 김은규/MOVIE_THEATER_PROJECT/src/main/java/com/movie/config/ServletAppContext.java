@@ -12,9 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.movie.model")
 @ComponentScan("com.movie.controller")
-
+@ComponentScan("com.movie.model")
 public class ServletAppContext implements WebMvcConfigurer {
 	//viewResolver
 	@Override
@@ -35,8 +34,3 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return new StandardServletMultipartResolver();
 	}
 }
-
-
-
-
-
