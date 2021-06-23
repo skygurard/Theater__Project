@@ -10,8 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.movie.controller")
 @ComponentScan("com.movie.model")
+@ComponentScan("com.movie.controller")
+
 public class ServletAppContext implements WebMvcConfigurer {
 	//viewResolver
 	@Override

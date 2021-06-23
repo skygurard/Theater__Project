@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 @Component
 public class movieReserveDao {
 	private static SqlSessionFactory sqlSessionFactory;
@@ -26,13 +28,13 @@ public class movieReserveDao {
 		}
 	}
 	
-	public List<movieReserveBean> showAllMember() {
+	public List<movieReserveBean> showAllReserveMovie() {
 		//ArrayList<MemberBean> memberList = new ArrayList<MemberBean>();
 		//connection pool을 하나 땡겨 쓰겠다
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<movieReserveBean> memberList = sqlSession.selectList("showAllMember");
+		List<movieReserveBean> movieReserveList = sqlSession.selectList("showAllReserveMovie");
 		sqlSession.close();
-		return memberList;
+		return movieReserveList;
 	}
 	
 	

@@ -15,16 +15,5 @@ public class movieReserveBean {
 		private String movie_list_age;
 		private String movie_reserve_date;
 		
-		
-		private String title;
-		private String info;
-		private String director;
-		private String actor;
-		private String runningTime;
-		private String age;
-		private String releaseDate;
-		private String endDate;
-		private String country;
-		private String genre;
-		private String profileImg;
+
 }

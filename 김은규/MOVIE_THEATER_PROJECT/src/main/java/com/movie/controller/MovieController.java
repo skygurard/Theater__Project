@@ -7,24 +7,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.model.movieBean;
 import com.movie.model.movieDao;
-import com.movie.utils.PagingUtil;
 import com.movie.utils.ScriptWriterUtil;
-
+import com.movie.utils.PagingUtil;
 
 @Controller
 public class MovieController {
@@ -38,7 +42,7 @@ public class MovieController {
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
-		return "admin/insert_movie";
+		return "movie/admin/insert_movie";
 	}
 	
 	@RequestMapping("/InsertMovie.do")
@@ -225,3 +229,5 @@ public class MovieController {
 //	}
 	
 }
+	
+

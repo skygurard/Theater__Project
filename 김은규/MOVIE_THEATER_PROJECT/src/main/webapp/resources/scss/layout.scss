@@ -1,108 +1,71 @@
-@import "vars";
-html {
-    font-size:10px;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
+
+a {
+	text-decoration:none;
+	color:inherit;
+}
+
 body {
-    font-family: "Roboto","Noto Sans KR";
-    font-size: 1.6rem;
-}
-#header {
-    display: flex;
-    justify-content: center; //가로 정렬
-    align-items: center; //세로 정렬
-    height:50px;
-    overflow: hidden;
-    color:#fff;
-    background: $main-color;
-    font-weight: 500;
-    font-size: 1.8rem;
-    @include longShadow(  darken($main-color,10) , right, 30 );
+    font-family: "Noto Sans KR";
+    h1 {
+        margin-top: 30px;
+        text-align: center;
+    }
 }
 
-#container {
+#genre {
+    padding :0 5px;
+}
 
-.topButton{
+#profileImg {
     cursor: pointer;
-    background-color:#dace63;
-    
-    
 }
-#topButton1{
-    margin-left:500px;
-}
-.step1{
-    display: flex;
-  
-    margin-top:15px;
-    
-
-}
-.step1 .selectionMovie .colHead{
-    width: 284px;
-    margin-left:150px;
-    margin-right:3px;
-}
-.step1 .selectionMovie .colBody{
-    width: 284px;
-    margin-left:150px;
-    margin-right:3px;
-    margin-top: 0px;
-}
-.step1 .selectionTheater .colHead{
-width: 265px;
-margin-right:3px;
-}
-.step1 .selectionTheater .colBody{
-    width: 265px;
-margin-right:3px;
-}
-.step1 .selectionDay .colHead{
-    width: 91px;
-    margin-right:3px;
-    }
-    .step1 .selectionDay .colBody{
-        width: 91px;
-    margin-right:3px;
-    }
- .step1 .selectionTime .colHead{
-        width: 346px;
-        margin-right:3px;
-        }
-        .step1 .selectionTime .colBody{
-            width: 346px;
-        margin-right:3px;
-        }
-.colHead{
-    height:33px;
+form {
+    display: block;
+    width:800px;
+    margin: 20px auto;
     text-align: center;
-    background-color:#000 ;
-    color:#fff;
-    line-height: 33px;
+    label {
+        position: relative;
+        display: block;
+        padding: 5px;
+        margin: 10px;
+        font-size: 18px;
+    }
+    input {
+        font-size: 18px;
+        padding: 0 2px;
+      
+    }
+
+    .genreBox {
+        margin:0 auto;
+        width:590px;
+        text-align: center;
+        span {
+            padding: 0 2px;
+            margin-right: 10px;
+        }
+    }
 }
-.colBody{
-    height:560px;
-    background-color:#dace63 ;
+form .btns * {
+	display: inline-block;
+	width: 100px;
+	height: 50px;
+    margin:10px auto;
+	line-height:50px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+	font-weight: 500;
+	background-color: rgb(109, 109, 109);
+	color: #fff;
+    &:hover {
+        cursor: pointer;
+    }
 }
-.timeInput{
-    width:110px;
-}
-.selectionTheater .colBody{
-    width:50%;
-    display:flex;
-}
-#theaterCityList .hide { display:none; }
-
-.li{
-    cursor: pointer;
-}
-
-}
-
-
-
-
-
-
-
-
-

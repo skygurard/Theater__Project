@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 @Component
 public class movieDao {
 

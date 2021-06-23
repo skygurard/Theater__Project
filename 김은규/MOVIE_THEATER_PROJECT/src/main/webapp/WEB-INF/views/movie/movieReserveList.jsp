@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/reserve_layout.css">
 <link rel="stylesheet" href="css/reserve.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
@@ -24,11 +24,11 @@
             <div class="sort-wrapper">
                 <div class="sort-rate sort-selected">예매율순</div>
                 <div class="sort-korean">가나다순</div>
-            </div>ti
+            </div>
              <div class="movie-list-wrapper">
                 <div class="movie-list">
-                <c:forEach var="memberBean" items="${movieReserveList }">
-                <div class="movie-list-age">$movieReserveList.movie_list_age }  </div>
+                <c:forEach var="movieReserveBean" items="${movieReserveList }">
+                <div class="movie-list-age">${movieReserveList.movie_list_age }  </div>
                 <div class="movie-list-title">${movieReserveList.movie_list_title}</div>
                 </c:forEach>
                 

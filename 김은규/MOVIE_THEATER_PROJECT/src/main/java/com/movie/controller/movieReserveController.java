@@ -31,9 +31,9 @@ public class movieReserveController {
 	movieReserveBean movieReserveBean;
 	
 	@GetMapping("/movieReserveList.do")
-	public String memberList(Model model) {
+	public String movieReserveList(Model model) {
 		//MemberDao memberDao = new MemberDao();
-		List<movieReserveBean> movieReserveList = movieReserveDao.showAllMember();
+		List<movieReserveBean> movieReserveList = movieReserveDao.showAllReserveMovie();
 		model.addAttribute("movieReserveList", movieReserveList);
 		logger.info("movieReserveList{}",movieReserveList);
 		return "movie/movieReserveList";
