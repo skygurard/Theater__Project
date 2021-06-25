@@ -154,23 +154,23 @@ public class MovieController {
 		return "movie/admin/modify_movie_form_admin";
 	}
 	
-//	@PostMapping("/ModifyMovie.do")
-//	public String boardModify(int no,MovieBean movieBean,HttpServletResponse response) throws IOException {
-//		String dbPassword = adminDao.getPasswordAdmin(no);
-//		if(dbPassword.equals(adminBean.getPassword())) {
-//			int result = movieDao.modifyMovie(movieBean); 
-//			if(result > 0) {
-//				ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "MovieListAdmin.do");
-//				return null;
-//			} else {
-//				ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
-//				return null;
-//			}
-//		} else {
-//			ScriptWriterUtil.alertAndBack(response, "비민번호를 확인해 주세요.");
-//			return null;
-//		}
-//	}
+	@PostMapping("/ModifyMovie.do")
+	public String boardModify(int no,MovieBean movieBean,HttpServletResponse response) throws IOException {
+		String dbPassword = adminDao.getPasswordAdmin(no);
+		if(dbPassword.equals(adminBean.getPassword())) {
+			int result = movieDao.modifyMovie(movieBean); 
+			if(result > 0) {
+				ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "MovieListAdmin.do");
+				return null;
+			} else {
+				ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
+				return null;
+			}
+		} else {
+			ScriptWriterUtil.alertAndBack(response, "비민번호를 확인해 주세요.");
+			return null;
+		}
+	}
 	
 	@GetMapping("/DeleteMovieForm.do")
 	public String deleteMovieForm(int no, Model model) {

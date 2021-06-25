@@ -93,16 +93,7 @@
 			</div>
 		</form>
 	</div>
-
-</body>
-</body>
-</html>
-
-
-
-<script>
-
-$(document).ready(function(){
+	<script>
 	$(function() {
 		var dateFormat = "mm/dd/yy",
 			releaseDate=$("#releaseDate")
@@ -131,31 +122,7 @@ $(document).ready(function(){
 			return date;
 		}
 	});
-
-	
-	var genreTxt = '${movieBean.genre}'
-	
-	var text = genreTxt.split('/');
-	// var text = ['액션','스포츠','스릴러','애니메이션'];
-	var i = 0;
-	
-	for(i=0; i < text.length; i++){
-  		$('.genreList').each(function(){
-  			if($(this).val() === text[i] ){
-  				$(this).attr("checked", true); /* 선택 */				
-  			}
-  		})
-	}
-	
-	
-	
-
-	
-	
-	
-	
-	
-})
-
 </script>
-
+</body>
+</body>
+</html>
