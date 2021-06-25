@@ -52,6 +52,8 @@ public class MovieDao {
 		return result;
 	}
 	
+
+	
 	public MovieBean getSelectOneMovie(int no) {
 		MovieBean movieBean = new MovieBean();
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -89,14 +91,14 @@ public class MovieDao {
 		return total;
 	}
 	
-	public String getAdminId(int no) {
-		String result = "";
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		result = sqlSession.selectOne("getAdminId");
-		sqlSession.close();
-		
-		return result;
-	}
+	
+//	public List<MovieBean> showAllMovie() {
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		List<MovieBean> movieList = sqlSession.selectList("showAllMovie");
+//		sqlSession.close();
+//		
+//		return movieList;
+//	}
 	
 	
 	

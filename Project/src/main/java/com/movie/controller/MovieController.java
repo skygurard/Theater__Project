@@ -29,8 +29,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.model.MovieBean;
 import com.movie.model.MovieDao;
-import com.movie.model.admin.AdminBean;
-import com.movie.model.admin.AdminDao;
 import com.movie.utils.PagingUtil;
 import com.movie.utils.ScriptWriterUtil;
 
@@ -39,6 +37,7 @@ public class MovieController {
 
 	@Autowired
 	MovieBean movieBean;
+<<<<<<< HEAD
 	@Autowired
 	AdminBean adminBean;
 	
@@ -46,6 +45,11 @@ public class MovieController {
 	MovieDao movieDao;
 	@Autowired
 	AdminDao adminDao;
+=======
+	
+	@Autowired
+	MovieDao movieDao;
+>>>>>>> parent of 6e1dea3 (영화수정기능 추가)
 
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
@@ -144,72 +148,28 @@ public class MovieController {
 	public String modifyMovieForm(int no, Model model) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
+		model.addAttribute("no", no);
 		
 		return "movie/admin/modify_movie_form_admin";
 	}
 	
-	@PostMapping("/ModifyMovie.do")
-	public String modifyMovie(int no, MovieBean movieBean,
-							  HttpServletRequest request,
-							  HttpServletResponse response,
-							  MultipartFile multipartPosterImg) throws IOException {
-		
-		Date nowdate 			    = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-		String dbDate 				= dateFormat.format(nowdate);
-		String[] genreList = request.getParameterValues("genre");
-		String genreText   ="";
-		
-		if(genreList != null) {
-			for(int i=0; i<genreList.length;i++) {
-				if(genreText.equals("")) {
-					genreText = genreList[i];
-				}else {
-					genreText += "/"+ genreList[i];
-				}
-			}
-			movieBean.setGenre(genreText); //  genreText = 공포/스릴러/범죄
-		} else {
-			movieBean.setGenre("");
-		};
-		
-		String context 			= request.getContextPath();
-		String fileRoot 		= "C:\\movieproject_image\\";
-		String originalFileName = multipartPosterImg.getOriginalFilename();
-		String extension 		= FilenameUtils.getExtension(originalFileName);
-		String savedFileName 	= dbDate+"."+extension;
-		File targetFile 		= new File(fileRoot + savedFileName);
-		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
-
-		movieBean.setPosterImg(dbSavedFile);
-		
-		try {
-			InputStream fileStream = multipartPosterImg.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-		} catch(IOException e) {
-			FileUtils.deleteQuietly(targetFile);
-			e.printStackTrace();
-		}
-		
-		String dbPassword = adminDao.getPasswordAdmin(no);
-		String password = request.getParameter("password");
-		
-		if(dbPassword.equals(password)) {
-			
-			int result = movieDao.modifyMovie(movieBean);
-			
-			if(result > 0) {
-				ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "ListMovieAdmin.do");
-				return null;
-			} else {
-				ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
-				return null;
-			}
-		} else {
-			ScriptWriterUtil.alertAndBack(response, "비민번호를 확인해 주세요.");
-			return null;
-		}
-	}
+//	@PostMapping("/ModifyMovie.do")
+//	public String boardModify(int no,MovieBean movieBean,HttpServletResponse response) throws IOException {
+//		String dbPassword = adminDao.getPasswordAdmin(no);
+//		if(dbPassword.equals(adminBean.getPassword())) {
+//			int result = movieDao.modifyMovie(movieBean); 
+//			if(result > 0) {
+//				ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "MovieListAdmin.do");
+//				return null;
+//			} else {
+//				ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
+//				return null;
+//			}
+//		} else {
+//			ScriptWriterUtil.alertAndBack(response, "비민번호를 확인해 주세요.");
+//			return null;
+//		}
+//	}
 	
 	@GetMapping("/DeleteMovieForm.do")
 	public String deleteMovieForm(int no, Model model) {
