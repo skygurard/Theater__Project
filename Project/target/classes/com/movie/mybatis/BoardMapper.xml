@@ -107,7 +107,7 @@
 	<select id="getSelectOneMember" resultType="MemberBean" parameterType="Integer">
 		SELECT * FROM MEMBER WHERE NO = #{no}
 	</select>
-	<select id="getPasswordMember" resultType="String" parameterType="Integer">
+	<select id="getPasswordAdmin" resultType="String" parameterType="Integer">
 		SELECT PASSWORD FROM MEMBER WHERE NO = #{no}
 	</select>
 	
