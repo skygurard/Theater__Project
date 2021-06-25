@@ -29,6 +29,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.model.MovieBean;
 import com.movie.model.MovieDao;
+import com.movie.model.admin.AdminBean;
+import com.movie.model.admin.AdminDao;
 import com.movie.utils.PagingUtil;
 import com.movie.utils.ScriptWriterUtil;
 
@@ -37,7 +39,7 @@ public class MovieController {
 
 	@Autowired
 	MovieBean movieBean;
-<<<<<<< HEAD
+
 	@Autowired
 	AdminBean adminBean;
 	
@@ -45,11 +47,10 @@ public class MovieController {
 	MovieDao movieDao;
 	@Autowired
 	AdminDao adminDao;
-=======
+
 	
-	@Autowired
-	MovieDao movieDao;
->>>>>>> parent of 6e1dea3 (영화수정기능 추가)
+	
+
 
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
