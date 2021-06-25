@@ -39,13 +39,11 @@ public class MovieController {
 
 	@Autowired
 	MovieBean movieBean;
-	
-	@Autowired
-	MovieDao movieDao;
-	
 	@Autowired
 	AdminBean adminBean;
 	
+	@Autowired
+	MovieDao movieDao;
 	@Autowired
 	AdminDao adminDao;
 
@@ -64,6 +62,7 @@ public class MovieController {
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
+		
 		String[] genreList = request.getParameterValues("genre");
 		String genreText   ="";
 		
@@ -212,23 +211,44 @@ public class MovieController {
 		}
 	}
 	
-//	@GetMapping("/DeleteMovie.do")
-//	public String deleteMovie(int no, Model model, String password, HttpServletResponse response) throws IOException {
-//		//String dbPassword = AdminDao.getPasswordAdmin(no); Admin테이블에서 pw가져오기
-//		if(dbPassword.equals(password)){
-//			int result = movieDao.deleteMovie(no);
-//			if(result>0) {
-//				ScriptWriterUtil.alertAndNext(response,"영화가 삭제되었습니다.","MovieListAdmin.do");
-//				return null;
-//			} else {
-//				ScriptWriterUtil.alertAndBack(response,"영화 삭제에 실패했습니다.");
-//				return null;
-//			}
-//		} else {
-//			ScriptWriterUtil.alertAndBack(response," 비밀번호를 확인해주세요.");
-//			return null;
-//		}
-//	}
+	@GetMapping("/DeleteMovieForm.do")
+	public String deleteMovieForm(int no, Model model) {
+		
+		movieBean = movieDao.getSelectOneMovie(no);
+		adminBean = adminDao.getSelectOneAdmin(no);
+		
+		model.addAttribute("movieBean", movieBean);
+		model.addAttribute("adminBean", adminBean);
+		model.addAttribute("no", no);
+		
+		return "movie/admin/delete_movie_form_admin";
+	}
+	
+	@PostMapping("/DeleteMovie.do")
+	public String deleteMovie(int no,
+							  Model model,
+							  HttpServletRequest request,
+							  HttpServletResponse response) throws IOException {
+		
+		String dbPassword = adminDao.getPasswordAdmin(no);
+		String password   = request.getParameter("password");
+		
+		if(dbPassword.equals(password)){
+			
+			int result = movieDao.deleteMovie(no);
+			
+			if(result>0) {
+				ScriptWriterUtil.alertAndNext(response,"영화가 삭제되었습니다.","ListMovieAdmin.do");
+				return null;
+			} else {
+				ScriptWriterUtil.alertAndBack(response,"영화 삭제에 실패했습니다.");
+				return null;
+			}
+		} else {
+			ScriptWriterUtil.alertAndBack(response," 비밀번호를 확인해주세요.");
+			return null;
+		}
+	}
 	
 	
 ///////////////////////////////////////////////////////////////////////
@@ -236,9 +256,6 @@ public class MovieController {
 	
 	@GetMapping("/ListMovie.do")
 	public String listMovie(MovieBean movieBean, HttpServletRequest request, Model model) {
-	//list?f=title&q=a
-	
-		
 		
 	String clickedPage = request.getParameter("clickedPage");
 	int total 		   = 0;
@@ -271,18 +288,4 @@ public class MovieController {
 		
 		return "movie/user/view_movie";
 	}
-	
-//	@RequestMapping(value = "/MovieListJson.do", produces ="application/json;charset=UTF-8")
-//	@ResponseBody
-//	public String movieListJson(Model model) throws JsonProcessingException {
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		HashMap<String, List<MovieBean>> hashMap = new HashMap<String, List<MovieBean>>();
-//		List<MovieBean> movieList = movieDao.getAllMovie();
-//		hashMap.put("movieList", movieList);
-//		
-//		String jsonData = objectMapper.writeValueAsString(hashMap);
-//		
-//		return jsonData;
-//	}
-	
 }

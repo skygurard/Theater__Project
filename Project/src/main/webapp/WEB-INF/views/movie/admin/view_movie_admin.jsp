@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>영화 상세 정보</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="formBox">
-		<h2>자유게시판</h2>
+		<h2>영화 상세 정보</h2>
 		<form id="joinForm" method="POST">
 			<table>
 				<colgroup>
@@ -52,7 +52,20 @@
 					</tr>
 					<tr>
 						<th>연령제한</th>
-						<td>${movieBean.age}</td>
+						<c:choose>
+								<c:when test="${movieBean.age == '12'}">
+									<td>12세</td>
+								</c:when>
+								<c:when test="${movieBean.age == '15'}">
+									<td>15세</td>
+								</c:when>
+								<c:when test="${movieBean.age == '19'}">
+									<td>청불</td>
+								</c:when>
+								<c:otherwise>
+									<td>전체</td>
+								</c:otherwise>
+						</c:choose>
 					</tr>
 					<tr>
 						<th>국가</th>

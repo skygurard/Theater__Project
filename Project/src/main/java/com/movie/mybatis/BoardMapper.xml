@@ -104,7 +104,7 @@
 		SELECT * FROM MEMBER ORDER BY NO DESC
 	</select>
 	
-	<select id="getSelectOneMember" resultType="MemberBean" parameterType="Integer">
+	<select id="getSelectOneAdmin" resultType="AdminBean" parameterType="Integer">
 		SELECT * FROM MEMBER WHERE NO = #{no}
 	</select>
 	<select id="getPasswordAdmin" resultType="String" parameterType="Integer">

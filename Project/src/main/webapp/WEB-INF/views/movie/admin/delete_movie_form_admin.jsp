@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>영화삭제하기</title>
+<title>영화 삭제하기</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -17,8 +17,8 @@
 </head>
 <body>
 	<div class="formBox">
-		<h2>영화삭제</h2>
-		<form action="InsertMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data" value = "test">
+		<h2>영화 삭제</h2>
+		<form action="DeleteMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data" value = "test">
 			<table>
 				<colgroup>
 					<col style="width: 200px">
@@ -27,7 +27,7 @@
 				<tbody>
 					<tr>
 						<th>ID</th>
-<%-- 						<td><input type="text" name="name" value="${adminBean.id }"></td> --%>
+						<td><input type="text" name="name" value="${adminBean.id}" readonly></td>
 					</tr>
 					<tr>
 						<th>PASSWORD</th>
@@ -37,9 +37,9 @@
 			</table>
 			<div class="btns">
 				<input type="hidden" name="no" value="${movieBean.no }">
-				<input type="submit" value="회원 탈퇴" id="join">
+				<input type="submit" value="영화 삭제" id="join">
 				<input type="reset" value="취소" id="cancel">
-				<a href="MovieListAdmin.do">회원 목록</a>
+				<a href="ListMovieAdmin.do">영화 목록</a>
 			</div>
 		</form>
 	</div>

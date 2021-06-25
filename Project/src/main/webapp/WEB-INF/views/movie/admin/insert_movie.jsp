@@ -25,7 +25,7 @@
 <body>
 <body>
 	<div class="formBox">
-		<h2>영화등록</h2>
+		<h2>영화 등록</h2>
 		<form action="InsertMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data">
 			<table>
 				<colgroup>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 영화리스트</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,17 +17,19 @@
 		<h2>관리자용 영화리스트</h2>
 			<table>
 				<colgroup>
-					<col style="width:50px">
-					<col style="width:150px">
-					<col style="width:300px">
-					<col style="width:150px">
-					<col style="width:150px">
+					<col style="width:70px">
+					<col style="width:100px">
+					<col style="width:360px">
+					<col style="width:100px">
+					<col style="width:140px">
+					<col style="width:140px">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>사진</th>
 						<th>번호</th>
 						<th>제목</th>
+						<th>연령</th>
 						<th>개봉일</th>
 						<th>상영종료일</th>
 					</tr>
@@ -38,7 +40,21 @@
 							<td><img src ="${movieBean.posterImg}" class="posterImg"></td>
 							<td>${movieBean.no}</td>
 							<td><a href="ViewMovieAdmin.do?no=${movieBean.no}">${movieBean.title}</a></td>
-							<td>${movieBean.age}</td>
+							
+							<c:choose>
+								<c:when test="${movieBean.age == '12'}">
+									<td>12세</td>
+								</c:when>
+								<c:when test="${movieBean.age == '15'}">
+									<td>15세</td>
+								</c:when>
+								<c:when test="${movieBean.age == '19'}">
+									<td>청불</td>
+								</c:when>
+								<c:otherwise>
+									<td>전체</td>
+								</c:otherwise>
+						</c:choose>
 							<td>${movieBean.releaseDate}</td>
 							<td>${movieBean.endDate}</td>
 						</tr>
