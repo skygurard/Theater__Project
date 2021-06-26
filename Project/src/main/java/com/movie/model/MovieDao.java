@@ -90,6 +90,14 @@ public class MovieDao {
 		sqlSession.close();
 		return total;
 	}
+
+public List<MovieBean> showAllMovie(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<MovieBean> movieList =sqlSession.selectList("showAllMovie");
+		sqlSession.close();
+		return movieList;
+		
+	}
 	
 	
 //	public List<MovieBean> showAllMovie() {

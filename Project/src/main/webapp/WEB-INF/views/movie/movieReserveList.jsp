@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/reserve_layout.css">
+<link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/reserve.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
@@ -27,10 +28,29 @@
             </div>
              <div class="movie-list-wrapper">
                 <div class="movie-list">
-                <c:forEach var="movieReserveBean" items="${movieReserveList }">
-                <div class="movie-list-age">${movieReserveList.movie_list_age }  </div>
-                <div class="movie-list-title">${movieReserveList.movie_list_title}</div>
+                <ul>
+                <c:forEach var="movieBean" items="${movieList }" begin="0"
+				end="${movieList.size()}" step="1" varStatus="status">
+				
+				
+					<c:choose>
+						<c:when test="${movieBean.age == '12'}">
+							<li><span class="showTwelven movie-list-age"> 12</span><span class="movie-list-title">${movieBean.title}</span></li>
+						</c:when>
+						<c:when test="${movieBean.age == '15'}">
+							<li><span class="showFiften movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+						</c:when>
+						<c:when test="${movieBean.age == '19'}">
+							<li><span class="showNineten movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+						</c:when>
+						<c:otherwise>
+							<li><span class="showAllAge movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+						</c:otherwise>
+					</c:choose>
+<%-- 				<span  class="movie-list-age">${movieBean.age }</span> --%>
+                
                 </c:forEach>
+                </ul>
                 
                     <%-- <div class="movie-list-age">15</div>
                     <div class="movie-list-title">1917</div> --%>
@@ -44,25 +64,39 @@
             <div class="theater-container">
                 <div class="theater-wrapper">
                     <div class="theater-location-wrapper tabs">
-                        <button class="theater-location tab-link" id="tab-1" >서울(30)</button>
-                        <button class="theater-location tab-link" id="tab-2">경기(43)</button>
-                        <button class="theater-location tab-link" id="tab-3">인천(10)</button>
-                        <button class="theater-location tab-link" id="tab-4">강원(5)</button>
+                        <button class="theater-location tab-link" id="tab-1" >서울</button>
+                        <button class="theater-location tab-link" id="tab-2">경기</button>
+                        <button class="theater-location tab-link" id="tab-3">인천</button>
+                        <button class="theater-location tab-link" id="tab-4">강원</button>
                     </div>
                     <div id="tab-1" class="tab-content theater-place-wrapper tab-1">
                         <button class="theater-place">천호</button>
+                        <button class="theater-place">강남</button>
+                        <button class="theater-place">화곡</button>
+                        <button class="theater-place">홍대</button>
+                        <button class="theater-place">외대</button>
+                        <button class="theater-place">여의도</button>
                        
                     </div>
                     <div id="tab-2" class="tab-content theater-place-wrapper current tab-2">
-                        <button class="theater-place">천호2</button>
+                        <button class="theater-place">김포</button>
+                        <button class="theater-place">동탄</button>
+                        <button class="theater-place">부천</button>
+                        <button class="theater-place">범골</button>
+                        <button class="theater-place">수원</button>
                        
                     </div>
                     <div id="tab-3" class="tab-content theater-place-wrapper current tab-3">
-                        <button class="theater-place">천호3</button>
+                        <button class="theater-place">부평</button>
+                        <button class="theater-place">인천</button>
+                        <button class="theater-place">청라</button>
+                        <button class="theater-place">계양</button>
                         
                     </div>
                     <div id="tab-4" class="tab-content theater-place-wrapper current tab-4">
-                        <button class="theater-place">천호4</button>
+                        <button class="theater-place">동래</button>
+                        <button class="theater-place">서면</button>
+                        <button class="theater-place">정관</button>
                        
                     </div>
                 </div>

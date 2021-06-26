@@ -37,6 +37,13 @@ public class movieReserveDao {
 		return movieReserveList;
 	}
 	
+	public List<MovieBean> showAllMovie(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<MovieBean> movieList =sqlSession.selectList("showAllMovie");
+		sqlSession.close();
+		return movieList;
+		
+	}
 	
 }
 

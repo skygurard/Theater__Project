@@ -390,6 +390,40 @@ body {
     color: white;
 }
 
+
+.showAllAge{
+    background-image: url("../images/showAll.png");
+    background-repeat: no-repeat;
+	display:inline-block;
+	height:22px;
+	width:24px;
+}
+
+.showTwelven{
+	background-image: url("../images/twelven.png");
+    background-repeat: no-repeat;
+	display:inline-block;
+	height:22px;
+	width:24px;
+	}
+
+.showFiften{
+    background-image: url("../images/fiften.png");
+    background-repeat: no-repeat;
+    display:inline-block;
+    height:22px;
+    width:24px;
+    z-index:999;
+    }
+
+.showNineten{
+    background-image: url("../images/nineten.png");
+    background-repeat: no-repeat;
+    display:inline-block;
+    height:22px;
+    width:24px;
+    }
+
 ::-webkit-scrollbar {
     width: 10px;
     /* height: 8px; */
