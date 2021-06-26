@@ -77,7 +77,16 @@
 		FROM MOVIE
 		WHERE NO = #{no}
 	</select>
-	
+	<select id= "showAllMovie" parameterType="hashMap" resultType="MovieBean">
+		SELECT *
+		        FROM (
+		                SELECT  NO
+		                      , TITLE
+		                      , AGE
+		                FROM MOVIE
+		                ORDER BY NO DESC
+		            ) 
+	</select>
 	<delete id="deleteMovie" parameterType="Integer">
 		DELETE FROM MOVIE WHERE NO = #{no}
 	</delete>
