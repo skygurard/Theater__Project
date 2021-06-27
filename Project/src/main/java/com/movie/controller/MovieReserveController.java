@@ -29,16 +29,14 @@ public class MovieReserveController {
 	
 	@Autowired
 	movieReserveBean movieReserveBean;
-	
-	@GetMapping("/MovieReserveList.do")
-	public String movieReserveList(Model model) {
-		//MemberDao memberDao = new MemberDao();
-		List<movieReserveBean> movieReserveList = movieReserveDao.showAllReserveMovie();
-		model.addAttribute("movieReserveList", movieReserveList);
-		logger.info("movieReserveList{}",movieReserveList);
-		return "movie/movieReserveList";
-	}
-	
+	//	@GetMapping("/MovieReserveList.do")
+//	public String movieReserveList(Model model) {
+//		//MemberDao memberDao = new MemberDao();
+//		List<movieReserveBean> movieReserveList = movieReserveDao.showAllReserveMovie();
+//		model.addAttribute("movieReserveList", movieReserveList);
+//		logger.info("movieReserveList{}",movieReserveList);
+//		return "movie/movieReserveList";
+//	}
 	
 }
 

@@ -268,4 +268,11 @@ public class MovieController {
 		
 		return "movie/user/view_movie";
 	}
+@GetMapping("/MovieReserveList.do")
+	public String movieList(Model model) {
+		//MemberDao memberDao = new MemberDao();
+		List<MovieBean> movieList = movieDao.showAllMovie();
+		model.addAttribute("movieList", movieList);
+		return "movie/movieReserveList";
+	}
 }
