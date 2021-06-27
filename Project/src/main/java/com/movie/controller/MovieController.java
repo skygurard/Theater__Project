@@ -48,10 +48,6 @@ public class MovieController {
 	@Autowired
 	AdminDao adminDao;
 
-	
-	
-
-
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
@@ -149,25 +145,61 @@ public class MovieController {
 	public String modifyMovieForm(int no, Model model) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		model.addAttribute("no", no);
 		
 		return "movie/admin/modify_movie_form_admin";
 	}
 	
 	@PostMapping("/ModifyMovie.do")
-	public String boardModify(int no,MovieBean movieBean,HttpServletResponse response) throws IOException {
-		String dbPassword = adminDao.getPasswordAdmin(no);
-		if(dbPassword.equals(adminBean.getPassword())) {
-			int result = movieDao.modifyMovie(movieBean); 
-			if(result > 0) {
-				ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "MovieListAdmin.do");
-				return null;
-			} else {
-				ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
-				return null;
+	public String boardModify(MovieBean movieBean,
+							  HttpServletRequest request,
+							  HttpServletResponse response,
+							  MultipartFile multipartPosterImg) throws IOException {
+		
+		Date nowdate 			    = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+		String dbDate 				= dateFormat.format(nowdate);
+		
+		String[] genreList = request.getParameterValues("genre");
+		String genreText   ="";
+		
+		if(genreList != null) {
+			for(int i=0; i<genreList.length;i++) {
+				if(genreText.equals("")) {
+					genreText = genreList[i];
+				}else {
+					genreText += "/"+ genreList[i];
+				}
 			}
+			movieBean.setGenre(genreText); //  genreText = 공포/스릴러/범죄
 		} else {
-			ScriptWriterUtil.alertAndBack(response, "비민번호를 확인해 주세요.");
+			movieBean.setGenre("");
+		};
+		
+		String context 			= request.getContextPath();
+		String fileRoot 		= "C:\\movieproject_image\\";
+		String originalFileName = multipartPosterImg.getOriginalFilename();
+		String extension 		= FilenameUtils.getExtension(originalFileName);
+		String savedFileName 	= dbDate+"."+extension;
+		File targetFile 		= new File(fileRoot + savedFileName);
+		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
+
+		try {
+			InputStream fileStream = multipartPosterImg.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);
+		} catch(IOException e) {
+			FileUtils.deleteQuietly(targetFile);
+			e.printStackTrace();
+		}
+		
+		movieBean.setPosterImg(dbSavedFile);
+		
+		int result = movieDao.modifyMovie(movieBean);
+		
+		if(result > 0) {
+			ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "ListMovieAdmin.do");
+			return null;
+		} else {
+			ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
 			return null;
 		}
 	}
@@ -176,41 +208,28 @@ public class MovieController {
 	public String deleteMovieForm(int no, Model model) {
 		
 		movieBean = movieDao.getSelectOneMovie(no);
-		adminBean = adminDao.getSelectOneAdmin(no);
-		
 		model.addAttribute("movieBean", movieBean);
-		model.addAttribute("adminBean", adminBean);
 		model.addAttribute("no", no);
 		
 		return "movie/admin/delete_movie_form_admin";
 	}
 	
-	@PostMapping("/DeleteMovie.do")
+	@RequestMapping("/DeleteMovie.do")
 	public String deleteMovie(int no,
 							  Model model,
 							  HttpServletRequest request,
 							  HttpServletResponse response) throws IOException {
 		
-		String dbPassword = adminDao.getPasswordAdmin(no);
-		String password   = request.getParameter("password");
+		int result = movieDao.deleteMovie(no);
 		
-		if(dbPassword.equals(password)){
-			
-			int result = movieDao.deleteMovie(no);
-			
-			if(result>0) {
-				ScriptWriterUtil.alertAndNext(response,"영화가 삭제되었습니다.","ListMovieAdmin.do");
-				return null;
-			} else {
-				ScriptWriterUtil.alertAndBack(response,"영화 삭제에 실패했습니다.");
-				return null;
-			}
+		if(result>0) {
+			ScriptWriterUtil.alertAndNext(response,"영화가 삭제되었습니다.","ListMovieAdmin.do");
+			return null;
 		} else {
-			ScriptWriterUtil.alertAndBack(response," 비밀번호를 확인해주세요.");
+			ScriptWriterUtil.alertAndBack(response,"영화 삭제에 실패했습니다.");
 			return null;
 		}
 	}
-	
 	
 ///////////////////////////////////////////////////////////////////////
 	// user페이지 매핑

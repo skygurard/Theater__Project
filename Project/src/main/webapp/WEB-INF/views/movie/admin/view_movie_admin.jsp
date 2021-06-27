@@ -84,7 +84,7 @@
 			</table>
 			<div class="btns">
 					<a href="ModifyMovieForm.do?no=${movieBean.no}">수정</a>
-					<a href="DeleteMovieForm.do?no=${movieBean.no}">삭제</a>
+					<a href="DeleteMovie.do?no=${movieBean.no}">삭제</a>
 				<a href="ListMovieAdmin.do">리스트</a>
 			</div>
 		</form>

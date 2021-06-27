@@ -91,33 +91,20 @@
 		DELETE FROM MOVIE WHERE NO = #{no}
 	</delete>
 	
-	<update id="updateMovie" parameterType="MovieBean">
-		UPDATE MOVIE SET (
-			, TITLE
-            , DIRECTOR
-            , ACTOR
-            , RELEASEDATE
-            , ENDDATE
-            , RUNNINGTIME
-            , COUNTRY
-            , INFO
-            , POSTERIMG
-            , GENRE
-            , AGE
-		)
-		VALUES (
-			#{title}
-		  , #{director}
-		  , #{actor}
-		  , #{releaseDate}
-		  , #{endDate}
-		  , #{runningTime}
-		  , #{country}
-		  , #{info}
-		  , #{posterImg}
-		  , #{genre}
-		  , #{age}
-		)
+	<update id="modifyMovie" parameterType="MovieBean">
+		UPDATE MOVIE SET
+			  TITLE = #{title}
+            , DIRECTOR = #{director}
+            , ACTOR = #{actor}
+            , RELEASEDATE = #{releaseDate}
+            , ENDDATE = #{endDate}
+            , RUNNINGTIME = #{runningTime}
+            , COUNTRY = #{country}
+            , INFO = #{info}
+            , POSTERIMG = #{posterImg}
+            , GENRE = #{genre}
+            , AGE = #{age}
+		WHERE NO = #{no}
 	</update>
 
 	<!-- 전체 영화리스트 수 -->
