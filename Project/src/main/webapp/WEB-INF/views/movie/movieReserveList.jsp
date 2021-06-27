@@ -35,16 +35,16 @@
 				
 					<c:choose>
 						<c:when test="${movieBean.age == '12'}">
-							<li><span class="showTwelven movie-list-age"> 12</span><span class="movie-list-title">${movieBean.title}</span></li>
+							<li><span class="movie-list-age showTwelven"></span><span class="movie-list-title">${movieBean.title}</span></li>
 						</c:when>
 						<c:when test="${movieBean.age == '15'}">
-							<li><span class="showFiften movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+							<li><span class="movie-list-age showFiften"></span><span class="movie-list-title">${movieBean.title}</span></li>
 						</c:when>
 						<c:when test="${movieBean.age == '19'}">
-							<li><span class="showNineten movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+							<li><span class="movie-list-age showNineten"></span><span class="movie-list-title">${movieBean.title}</span></li>
 						</c:when>
 						<c:otherwise>
-							<li><span class="showAllAge movie-list-age"></span><span class="movie-list-title">${movieBean.title}</span></li>
+							<li><span class="movie-list-age showAllAge"></span><span class="movie-list-title">${movieBean.title}</span></li>
 						</c:otherwise>
 					</c:choose>
 <%-- 				<span  class="movie-list-age">${movieBean.age }</span> --%>
