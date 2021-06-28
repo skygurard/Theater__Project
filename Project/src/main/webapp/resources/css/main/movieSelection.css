@@ -1,0 +1,22 @@
+.movieSelection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    margin: 10px 50px;
+    
+}
+.movieList{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 640px;
+    height: 41px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.movieListImg{
+    width: 800px;
+    height: 318px;
+}

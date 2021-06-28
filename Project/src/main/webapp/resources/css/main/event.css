@@ -1,0 +1,38 @@
+.event{
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+    height: inherit;
+    margin: 10px 50px;
+    
+}
+.eventList{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 640px;
+    height: 41px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.eventListImg{
+    border-bottom: 3px solid black;;
+}
+.eventListImg2{
+    display: flex;
+    align-items: center;
+    border: 3px solid black;
+    margin: 0px 3px;
+    width: 1000px;
+    height: 300px;
+}
+.eventListImg2Event1{
+    border: 3px solid black;
+    margin: 0;
+}
+.eventListImg2Event2{
+    width: 228px;
+    height: 261px;
+    border: 3px solid black;
+}

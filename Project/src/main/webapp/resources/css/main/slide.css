@@ -1,0 +1,43 @@
+.movieSlideContainer{
+    width: 640px;
+    margin: 0 auto;
+    position: relative;
+  }
+  h1{
+    text-align: center;
+  }
+  .movieSlideContainerAlbum{
+    display: flex;
+    height: 400px;
+    width: 640px;
+    overflow: hidden;
+
+  }
+  .movieSlideContainerAlbumImages{
+    position: relative;
+    display: flex;
+    height: 400px;
+  }
+  #movieSlideContainerAlbumImages>img{
+    width: 640px;
+    height: 400px;
+  }
+
+  button, button:active, button:focus{
+    border: rgb(0, 0, 0,0.5);
+    outline:rgb(0, 0, 0,0.5); 
+    color: rgb(255, 255, 255);
+    background:none;
+  }
+  
+  .prev{
+    float: left;
+  }
+  .next{
+    float: right;
+  }
+  .movieSlideContainerAlbumButton{
+      position: absolute;
+      width: 100%;
+      top: 50%;
+  }

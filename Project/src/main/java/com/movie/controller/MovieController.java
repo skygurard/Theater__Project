@@ -275,4 +275,10 @@ public class MovieController {
 		model.addAttribute("movieList", movieList);
 		return "movie/movieReserveList";
 	}
+@GetMapping("/Main.do")
+	public String viewMain() {
+		
+		
+		return "movie/main";
+	}
 }
