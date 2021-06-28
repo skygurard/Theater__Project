@@ -28,23 +28,7 @@ function add() {
         url: 'MemberList.do',
         type: 'get',
         success: function(data) {
-            reserveData = setData(data);
             
-            setList(data);
-            movieListAge = document.querySelectorAll('.movie-list-age');
-            movieListAge.forEach(li => {
-                if (li.innerHTML === '15세 이상') {
-                    li.classList.add('fifteen');
-                } else if (li.innerHTML === '청소년 관람불가') {
-                    li.classList.add('eighteen');
-                    li.innerHTML = '청불';
-                } else if (li.innerHTML === '전체') {
-                    li.classList.add('all');
-                }
-            });
-            if (reserve.length === 0) {
-                location.href = 'moveReserve.do';
-            }
             document.querySelectorAll('.movie-list-title').forEach(li => {
                 li.addEventListener('click', function() {
                     const movieListTitleActvie = document.querySelectorAll(
