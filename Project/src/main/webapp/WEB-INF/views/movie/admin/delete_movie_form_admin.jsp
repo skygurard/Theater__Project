@@ -1,47 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>영화 삭제하기</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/jquery-ui.min.css">
-<link rel="stylesheet" href="css/layout.css">
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-</head>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
+<%@ include file="../include/header_admin.jsp"%>
 <body>
 	<div class="formBox">
 		<h2>영화 삭제</h2>
-		<form action="DeleteMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data" value = "test">
-			<table>
+		<form action="DeleteMovie.do" id="joinForm" method="POST" enctype ="multipart/form-data">
+			<table class="delBox">
 				<colgroup>
 					<col style="width: 200px">
-					<col style="width: 600px">
+					<col style="width: 400px">
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>ID</th>
-						<td><input type="text" name="name" value="${adminBean.id}" readonly></td>
-					</tr>
-					<tr>
 						<th>PASSWORD</th>
-						<td><input type="password" name="password" value=""></td>
+						<td><input type="password" name="password"></td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="btns">
-				<input type="hidden" name="no" value="${movieBean.no }">
+			<div class="btns del">
+				<input type="hidden" name="no" value="${movieBean.no}">
 				<input type="submit" value="영화 삭제" id="join">
 				<input type="reset" value="취소" id="cancel">
 				<a href="ListMovieAdmin.do">영화 목록</a>
 			</div>
 		</form>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
