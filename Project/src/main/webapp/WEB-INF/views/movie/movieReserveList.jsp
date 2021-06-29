@@ -183,7 +183,7 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
             </div>
         </div>
         <div>
-            <form class="moveSeatForm" action="moveSeat.do" method="post">
+            <form class="moveSeatForm" action="movieSeatBooking.do" method="post">
                 <input type="hidden" class="title" name="title"> <input
                     type="hidden" class="movieAge" name="movieAge"> <input
                     type="hidden" class="selectedTheater" name="selectedTheater">
