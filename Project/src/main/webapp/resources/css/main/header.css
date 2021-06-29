@@ -30,7 +30,7 @@ h1#logo{
     margin: 8px 200px;
 }
 ul { list-style:none; cursor:pointer }
-li { 
+#header li { 
   width:30%;
   float:left; 
   margin-right:10px;
