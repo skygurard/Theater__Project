@@ -80,8 +80,16 @@
             <img class="borderImage" src="https://img.cgv.co.kr/R2014/images/title/h3_movie_selection.gif" alt="#">
         </div>
         <div class="movieListImg">
-            
-        </div>
+        <c:forEach var="movieBean" items="${movieList }" begin="0"
+                        end="${movieList.size()}" step="1" varStatus="status">
+        
+          <img src="${movieBean.posterImg}">
+       
+                        
+        </c:forEach>
+         </div>      
+                        
+       
     </section>
     <section class="event">
         <div class="eventList" id="eventList">

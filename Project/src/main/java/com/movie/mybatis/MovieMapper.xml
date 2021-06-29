@@ -83,6 +83,7 @@
 		                SELECT  NO
 		                      , TITLE
 		                      , AGE
+		                      , POSTERIMG
 		                FROM MOVIE
 		                ORDER BY NO DESC
 		            ) 

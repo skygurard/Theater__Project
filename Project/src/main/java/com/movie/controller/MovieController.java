@@ -300,9 +300,12 @@ public class MovieController {
 		return "movie/movieReserveList";
 	}
 	
+	
 	@GetMapping("/Main.do")
-	public String viewMain() {
+	public String viewMain(Model model) {
 		
+		List<MovieBean> movieList = movieDao.showAllMovie();
+		model.addAttribute("movieList", movieList);
 		
 		return "movie/main";
 	}
