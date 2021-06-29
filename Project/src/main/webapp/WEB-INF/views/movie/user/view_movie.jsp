@@ -1,24 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ViewMovie</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/jquery-ui.min.css">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/user/user_view.css">
-</head>
+<%@ include file="../include/header_admin.jsp"%>
 <body>
-	<div id="movie">
+	<div id="movieInfo">
 	
-		<div class="titleBox">
+		<div class="titleBoxInfo">
 			<div class="titleHeader">
 				<span>영화상세</span>
 			</div>
@@ -72,5 +60,6 @@
 			<p>${movieBean.info}</p>
 		</div>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -1,28 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>영화등록하기</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-<style>
-    /*datepicker에서 사용한 이미지 버튼 style적용*/
-    img.ui-datepicker-trigger {
-        margin-left:5px; vertical-align:middle; cursor:pointer; }
-</style>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- datepicker 한국어로 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
-</head>
-<body>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
+<%@ include file="../include/header_admin.jsp"%>
+
 <body>
 	<div class="formBox">
 		<h2>영화 등록</h2>
@@ -46,7 +27,7 @@
 						<td><input type="text" name="actor" id="subject" value="배우"></td>
 					</tr>
 					<tr>
-					<th>장르</th>
+					<th class="genre">장르</th>
 						<td>
 							<input class="genreList" type="checkBox" name ="genre" value = "액션"><span>액션</span>
 							<input class="genreList" type="checkBox" name ="genre" value = "드라마"><span>드라마</span>
@@ -55,7 +36,7 @@
 							<input class="genreList" type="checkBox" name ="genre" value = "스릴러"><span>스릴러</span>
 							<input class="genreList" type="checkBox" name ="genre" value = "미스터리"><span>미스터리</span>
 							<input class="genreList" type="checkBox" name ="genre" value = "판타지"><span>판타지</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "다큐멘터리"><span>다큐멘터리</span>
+							<input class="genreList" type="checkBox" name ="genre" value = "다큐멘터리"><span>다큐멘터리</span><br>
 							<input class="genreList" type="checkBox" name ="genre" value = "성인"><span>성인</span>
 							<input class="genreList" type="checkBox" name ="genre" value = "스포츠"><span>스포츠</span>
 							<input class="genreList" type="checkBox" name ="genre" value = "코미디"><span>코미디</span>
@@ -79,10 +60,10 @@
 					<tr>
 						<th>연령제한</th>
 						<td>
-							<input type="radio" name="age" value="전체관람가"><span>전체 관람가</span>
-							<input type="radio" name="age" value="12"><span>12세 이상</span>
-							<input type="radio" name="age" value="15"><span>15세 이상</span>
-							<input type="radio" name="age" value="19"><span>청소년 관람불가</span>
+							<input class="age" type="radio" name="age" value="전체관람가"><span>전체 관람가</span>
+							<input class="age" type="radio" name="age" value="12"><span>12세 이상</span>
+							<input class="age" type="radio" name="age" value="15"><span>15세 이상</span>
+							<input class="age" type="radio" name="age" value="19"><span>청소년 관람불가</span>
 						</td>
 					</tr>
 					<tr>
@@ -106,7 +87,9 @@
 			</div>
 		</form>
 	</div>
-	<script>
+	<%@ include file="../include/footer.jsp"%>
+</body>
+<script>
 	 $(function() {
          //오늘 날짜를 출력
          $("#today").text(new Date().toLocaleDateString());
@@ -151,6 +134,4 @@
      });
 
 </script>
-</body>
-</body>
 </html>

@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>관리자 영화리스트</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="css/admin/admin_list.css">
-</head>
+<%@ include file="../include/header_admin.jsp"%>
 <body>
 	<div class="formBox" id="list">
 		<h2>관리자용 영화리스트</h2>
@@ -89,6 +80,7 @@
 			<a href="InsertMovieForm.do" id="join">영화등록</a>
 		</div>
 	</div>
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
 

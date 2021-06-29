@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>영화 상세 정보</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="css/admin/admin_view.css">
-</head>
+<%@ include file="../include/header_admin.jsp"%>
 <body>
 	<div class="formBox">
 		<h2>영화 상세 정보</h2>
@@ -77,7 +68,7 @@
 					</tr>
 					<tr>
 						<th>사진</th>
-						<td><img src ="${movieBean.posterImg}"></td>
+						<td><img class="viewPosterImg" src ="${movieBean.posterImg}"></td>
 					</tr>
 
 				</tbody>
@@ -89,7 +80,7 @@
 			</div>
 		</form>
 	</div>
-
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
 
