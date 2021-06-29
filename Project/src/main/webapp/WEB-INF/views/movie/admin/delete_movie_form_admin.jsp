@@ -23,7 +23,8 @@
 				<input type="hidden" name="no" value="${movieBean.no}">
 				<input type="submit" value="영화 삭제" id="join">
 				<input type="reset" value="취소" id="cancel">
-				<a href="ListMovieAdmin.do">영화 목록</a>
+				<a href="ListMovieAdmin.do">관리자용 영화목록</a>
+				<a href="ListMovie.do">회원용 영화목록</a>
 			</div>
 		</form>
 	</div>

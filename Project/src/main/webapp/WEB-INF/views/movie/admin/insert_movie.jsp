@@ -83,7 +83,8 @@
 			<div class="btns">
 				<input type="submit" value="확인" id="join">
 				<input type="reset" value="취소" id="cancel">
-				<a href="ListMovieAdmin.do" id="join">리스트</a>
+				<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a>
+				<a href="ListMovie.do" id="join">회원용 영화목록</a>
 			</div>
 		</form>
 	</div>

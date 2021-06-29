@@ -74,9 +74,10 @@
 				</tbody>
 			</table>
 			<div class="btns">
-					<a href="ModifyMovieForm.do?no=${movieBean.no}">수정</a>
-					<a href="DeleteMovieForm.do?no=${movieBean.no}">삭제</a>
-				<a href="ListMovieAdmin.do">리스트</a>
+				<a href="ModifyMovieForm.do?no=${movieBean.no}">수정</a>
+				<a href="DeleteMovieForm.do?no=${movieBean.no}">삭제</a>
+				<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a>
+				<a href="ListMovie.do" id="join">회원용 영화목록</a>
 			</div>
 		</form>
 	</div>
