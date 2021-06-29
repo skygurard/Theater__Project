@@ -396,6 +396,7 @@ body {
 	display:inline-block;
 	height:22px;
 	width:24px;
+    font-size:0px;
 }
 
 .showTwelven{
@@ -404,6 +405,7 @@ body {
 	display:inline-block;
 	height:22px;
 	width:24px;
+	font-size:0px;
 	}
 
 .showFiften{
@@ -412,7 +414,7 @@ body {
     display:inline-block;
     height:22px;
     width:24px;
-    z-index:999;
+    font-size:0px;
     }
 
 .showNineten{
@@ -421,6 +423,7 @@ body {
     display:inline-block;
     height:22px;
     width:24px;
+    font-size:0px;
     }
 
 ::-webkit-scrollbar {
