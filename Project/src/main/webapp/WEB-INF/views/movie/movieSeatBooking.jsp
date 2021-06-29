@@ -14,14 +14,23 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	
     <div class="movie-container">
+    <%
+    request.setCharacterEncoding("UTF-8");
+    String title= request.getParameter("title");
+    String age = request.getParameter("movieAge");
+    String selectedTheater = request.getParameter("selectedTheater");
+    String movieDate = request.getParameter("movieDate");
+    String runningTime = request.getParameter("runningTime");
+    %>
+     
       <label>영화를 골라주세요:</label>
       <select id="movie">
-        <option value="10000">영화 1</option>
-        <option value="10000">영화 2</option>
-        <option value="10000">영화 3</option>
-        <option value="10000">영화 4</option>
+        <option value="10000"><%=title %></option>
+        <option value="10000"><%=age %></option>
+        <option value="10000"><%=selectedTheater %></option>
+        <option value="10000"><%=movieDate %></option>
+        <option value="10000"><%=runningTime %></option>
       </select>
     </div>
 
@@ -114,7 +123,7 @@
       선택한 좌석은 <span id="count">0</span> 결제하실 가격은<span id="total">0</span>
     </p>
     <div>
-      <form action="kakaoPay.do" method="GET"> 
+      <form action="kakaoPay.do" method="GET"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
         <input type="hidden" class="title" name="title">
         <input type="hidden" class="movieAge" name="movieAge">
         <input type="hidden" class="selectedTheater" name="selectedTheater">

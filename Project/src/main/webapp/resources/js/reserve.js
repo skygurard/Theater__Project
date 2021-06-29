@@ -5,13 +5,17 @@ const nextLastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
 const reserveDate = document.querySelector('.reserve-date');
 const theaterPlace = document.querySelectorAll('.theater-place');
 const reserveTimeWant = document.querySelectorAll('.reserve-time-want');
+const inputAge = document.querySelector('movie-list-age');
 const inputTitle = document.querySelector('.title');
+
 const inputSelectedTheater = document.querySelector('.selectedTheater');
 const inputReserveDate = document.querySelector('.reserveDate');
 const inputRunningTime = document.querySelector('.runningTime');
 const moveSeatForm = document.querySelector('.moveSeatForm');
 const moveSeatButton = document.querySelector('.moveSeatButton');
 const movieAge = document.querySelector('.movieAge');
+var movieSelectAge='';
+
 
 let movieListAge = '';
 let year = 0;
@@ -35,16 +39,21 @@ function add() {
                     const movieListTitleActvie = document.querySelectorAll(
                         '.movie-list-title-active'
                     );
+                    
                     movieListTitleActvie.forEach(li => {
                         li.classList.remove('movie-list-title-active');
                     });
                     li.parentNode.classList.add('movie-list-title-active');
-                    console.log(li.innerHTML);
-                    console.log(li.parentElement);
+                    
+                    //console.log(li.innerHTML);
+                    
+                    //console.log(li.parentElement);
                     console.log(li.parentElement.childNodes[1].innerHTML);
-                    movieAge.value = li.parentElement.childNodes[1].innerHTML;
+                    console.log(li.parentElement.childNodes[0].innerHTML)
+                    movieAge.value = li.parentElement.childNodes[0].innerHTML;
                     inputTitle.value = li.innerHTML;
                 });
+             
             });
         },
         error: function() {
@@ -153,7 +162,7 @@ function dayClickEvent(button) {
             list.classList.remove('movie-date-wrapper-active');
         });
         button.classList.add('movie-date-wrapper-active');
-       
+        console.log(button.childNodes[1].innerHTML);
         inputReserveDate.value =
             year +
             '.' +

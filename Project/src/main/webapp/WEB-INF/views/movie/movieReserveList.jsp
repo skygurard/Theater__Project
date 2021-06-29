@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -82,19 +83,19 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
 
                         <c:choose>
                             <c:when test="${movieBean.age == '12'}">
-                                <li><span class="movie-list-age showTwelven"></span><span
+                                <li><span class="movie-list-age showTwelven">12세이상</span><span
                                     class="movie-list-title">${movieBean.title}</span></li>
                             </c:when>
                             <c:when test="${movieBean.age == '15'}">
-                                <li><span class="movie-list-age showFiften"></span><span
+                                <li><span class="movie-list-age showFiften">15세이상</span><span
                                     class="movie-list-title">${movieBean.title}</span></li>
                             </c:when>
                             <c:when test="${movieBean.age == '19'}">
-                                <li><span class="movie-list-age showNineten"></span><span
+                                <li><span class="movie-list-age showNineten">청소년관람불가</span><span
                                     class="movie-list-title">${movieBean.title}</span></li>
                             </c:when>
                             <c:otherwise>
-                                <li><span class="movie-list-age showAllAge"></span><span
+                                <li><span class="movie-list-age showAllAge">전체이용가</span><span
                                     class="movie-list-title">${movieBean.title}</span></li>
                             </c:otherwise>
                         </c:choose>
@@ -104,7 +105,7 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
                 </ul>
 
                 <%-- <div class="movie-list-age">15</div>
-                <div class="movie-list-title">1917</div> --%>
+                    <div class="movie-list-title">1917</div> --%>
             </div>
         </div>
     </div>
@@ -183,26 +184,27 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
             </div>
         </div>
         <div>
-            <form class="moveSeatForm" action="movieSeatBooking.do" method="post">
-                <input type="hidden" class="title" name="title"> <input
-                    type="hidden" class="movieAge" name="movieAge"> <input
-                    type="hidden" class="selectedTheater" name="selectedTheater">
-                <input type="hidden" class="reserveDate" name="movieDate">
-                <input type="hidden" class="runningTime" name="runningTime">
+            <form class="moveSeatForm" action="movieSeatBooking.do"
+                method="post">
+                <input type="hidden" class="title" name="title" value="${inputTitle.value }"> 
+                <input type="hidden" class="movieAge" name="movieAge" value="${movieAge.value }" > 
+                <input type="hidden" class="selectedTheater" name="selectedTheater" value="${inputSelectedTheater.value }">
+                <input type="hidden" class="reserveDate" name="movieDate" value="${ inputReserveDate.value}" >
+                <input type="hidden" class="runningTime" name="runningTime" value="${inputRunningTime.value }">
                 <button class="moveSeatButton" type="button">예약하기</button>
             </form>
         </div>
     </div>
 
-<footer>
-    <p>ALL COPYRIGHT RESERVED BY TIS</p>
-    <div class="footerImg1">
-        <span></span>
-    </div>
-    <div class="footerImg2">
-        <span></span>
-    </div>
-</footer>
+    <footer>
+        <p>ALL COPYRIGHT RESERVED BY TIS</p>
+        <div class="footerImg1">
+            <span></span>
+        </div>
+        <div class="footerImg2">
+            <span></span>
+        </div>
+    </footer>
     <script src="js/reserve.js"></script>
     <script>
         $(document).ready(function() {
@@ -214,7 +216,12 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
                 $("." + tab_id).removeClass('current');
             })
 
-        })
+        });
+        
+        $('#choice').click(function(){
+              var text = $(this).attr('class')
+              console.log(text);
+        });
     </script>
 </body>
 
