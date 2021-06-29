@@ -80,6 +80,7 @@
 			<a href="InsertMovieForm.do" id="join">영화등록</a>
 			<a href="ListMovie.do" id="join">회원용 영화목록</a>
 		</div>
+		
 	</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
