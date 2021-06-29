@@ -1,6 +1,7 @@
 const date = new Date();
 // console.log(date.getFullYear());
 const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+const nextLastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
 const reserveDate = document.querySelector('.reserve-date');
 const theaterPlace = document.querySelectorAll('.theater-place');
 const reserveTimeWant = document.querySelectorAll('.reserve-time-want');
@@ -41,7 +42,6 @@ function add() {
                     console.log(li.innerHTML);
                     console.log(li.parentElement);
                     console.log(li.parentElement.childNodes[1].innerHTML);
-                    //form에 넘기기 위한
                     movieAge.value = li.parentElement.childNodes[1].innerHTML;
                     inputTitle.value = li.innerHTML;
                 });
@@ -70,53 +70,77 @@ function setList(data) {
     }, ' ');
 }
 
-function getMovieList(item) {
-    console.log(item);
+function getMovieList(MovieBean) {
+    console.log(MovieBean);
     return `<div class="movie-list">
     <div class="movie-list-age">${item.movieAge}</div>
     <button class="movie-list-title">${item.movieTitle}</button>
 </div>`;
 }
 
-function addDate() {
+function addDay(){
     const weekOfDay = ['일', '월', '화', '수', '목', '금', '토'];
+    const button = document.createElement('button');
+    const spanWeekOfDay = document.createElement('span');
+    const spanDay = document.createElement('span');
+
+    //class넣기
+    button.classList = 'movie-date-wrapper';
+    spanWeekOfDay.classList = 'movie-week-of-day';
+    spanDay.classList = 'movie-day';
+
+    //weekOfDay[new Date(2020-03-날짜)]
+    const dayOfWeek =
+        weekOfDay[new Date(year + '-' + month + '-' + i).getDay()];
+
+    //요일 넣기
+    if (dayOfWeek === '토') {
+        spanWeekOfDay.classList.add('saturday');
+        spanDay.classList.add('saturday');
+    } else if (dayOfWeek === '일') {
+        spanWeekOfDay.classList.add('sunday');
+        spanDay.classList.add('sunday');
+    }
+    spanWeekOfDay.innerHTML = dayOfWeek;
+    button.append(spanWeekOfDay);
+    //날짜 넣기
+    spanDay.innerHTML = i;
+    button.append(spanDay);
+    //button.append(i);
+
+    reserveDate.append(button);
+
+    dayClickEvent(button);
+}
+
+
+function addDate() {
+    
+    remainDay= (lastDay.getDate()-date.getDate());
     year = date.getFullYear();
     month = date.getMonth()+1;
+    console.log(remainDay)
     reserveDate.append(year + '/' + month);
-    console.log(lastDay.getDate());
-    
-    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
-        const button = document.createElement('button');
-        const spanWeekOfDay = document.createElement('span');
-        const spanDay = document.createElement('span');
+    if(remainDay<8){
 
-        //class넣기
-        button.classList = 'movie-date-wrapper';
-        spanWeekOfDay.classList = 'movie-week-of-day';
-        spanDay.classList = 'movie-day';
-
-        //weekOfDay[new Date(2020-03-날짜)]
-        const dayOfWeek =
-            weekOfDay[new Date(year + '-' + month + '-' + i).getDay()];
-
-        //요일 넣기
-        if (dayOfWeek === '토') {
-            spanWeekOfDay.classList.add('saturday');
-            spanDay.classList.add('saturday');
-        } else if (dayOfWeek === '일') {
-            spanWeekOfDay.classList.add('sunday');
-            spanDay.classList.add('sunday');
+        for (i = date.getDate(); i <= lastDay.getDate(); i++) {
+        month = date.getMonth()+1;
+        
+            addDay();
         }
-        spanWeekOfDay.innerHTML = dayOfWeek;
-        button.append(spanWeekOfDay);
-        //날짜 넣기
-        spanDay.innerHTML = i;
-        button.append(spanDay);
-        //button.append(i);
-
-        reserveDate.append(button);
-
-        dayClickEvent(button);
+        month = date.getMonth()+2;
+        reserveDate.append(year + '/' + month);
+        for (i =1; i <= lastDay.getDate(); i++) {
+        month = date.getMonth()+2;
+        
+            addDay();
+        }
+    }else{
+    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
+    month = date.getMonth()+1;
+    
+        addDay();
+    }
     }
 }
 
