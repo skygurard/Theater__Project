@@ -78,6 +78,10 @@
 						<th>사진</th>
 						<td><input id="posterImg" type="file" name="multipartPosterImg" value="${movieBean.posterImg}"></td>
 					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" name="password" id="password"></td>
+					</tr>
 				</tbody>
 			</table>
 			<div class="btns">
