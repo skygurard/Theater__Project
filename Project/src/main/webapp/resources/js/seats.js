@@ -5,7 +5,7 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 populateUI();
-let ticketPrice = +movieSelect.value;
+let ticketPrice = 10000;
 
 // 영화 데이터
 function setMovieData(movieIndex, moviePrice) {
@@ -26,7 +26,7 @@ function updateSelectedCount() {
   const selectedSeatsCount = selectedSeats.length;
 
   count.innerText = selectedSeatsCount;
-  total.innerText = selectedSeatsCount * ticketPrice;
+  total.innerText = selectedSeatsCount * 10000;
 }
 
 // get data from localstorage and populate ui

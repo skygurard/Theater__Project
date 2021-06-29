@@ -24,15 +24,8 @@
     String runningTime = request.getParameter("runningTime");
     %>
      
-      <label><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관 </label>
-      <label>영화를 골라주세요:</label>
-      <select id="movie">
-        <option value="10000"><%=title %></option>
-        <option value="10000"><%=age %></option>
-        <option value="10000"><%=selectedTheater %></option>
-        <option value="10000"><%=movieDate %></option>
-        <option value="10000"><%=runningTime %></option>
-      </select>
+      <label id="movie"><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관 </label>
+
     </div>
 
     <ul class="showcase">
@@ -55,68 +48,69 @@
     <div class="container">
       <div class="screen"></div>
       <div class="row">
-        <div class="seat">A1</div>
-        <div class="seat">A2</div>
-        <div class="seat">A3</div>
-        <div class="seat">A4</div>
-        <div class="seat">A5</div>
-        <div class="seat">A6</div>
-        <div class="seat">A7</div>
-        <div class="seat">A8</div>
+        <input type='button' class="seat" value='A1'>
+        <input type='button' class="seat" value='A2'>
+        <input type='button' class="seat" value='A3'>
+        <input type='button' class="seat" value='A4'>
+        <input type='button' class="seat" value='A5'>
+        <input type='button' class="seat" value='A6'>
+        <input type='button' class="seat" value='A7'>
+        <input type='button' class="seat" value='A8'>
+
       </div>
       <div class="row">
-        <div class="seat">B1</div>
-        <div class="seat">B2</div>
-        <div class="seat">B3</div>
-        <div class="seat">B4</div>
-        <div class="seat">B5</div>
-        <div class="seat">B6</div>
-        <div class="seat">B7</div>
-        <div class="seat">B8</div>
+        <input type='button' class="seat" value='B1'>
+        <input type='button' class="seat" value='B2'>
+        <input type='button' class="seat" value='B3'>
+        <input type='button' class="seat" value='B4'>
+        <input type='button' class="seat" value='B5'>
+        <input type='button' class="seat" value='B6'>
+        <input type='button' class="seat" value='B7'>
+        <input type='button' class="seat" value='B8'>
       </div>
 
       <div class="row">
-        <div class="seat">C1</div>
-        <div class="seat">C2</div>
-        <div class="seat">C3</div>
-        <div class="seat">C4</div>
-        <div class="seat">C5</div>
-        <div class="seat">C6</div>
-        <div class="seat">C7</div>
-        <div class="seat">C8</div>
+        <input type='button' class="seat" value='C1'>
+        <input type='button' class="seat" value='C2'>
+        <input type='button' class="seat" value='C3'>
+        <input type='button' class="seat" value='C4'>
+        <input type='button' class="seat" value='C5'>
+        <input type='button' class="seat" value='C6'>
+        <input type='button' class="seat" value='C7'>
+        <input type='button' class="seat" value='C8'>
       </div>
 
       <div class="row">
-        <div class="seat">D1</div>
-        <div class="seat">D2</div>
-        <div class="seat">D3</div>
-        <div class="seat">D4</div>
-        <div class="seat">D5</div>
-        <div class="seat">D6</div>
-        <div class="seat">D7</div>
-        <div class="seat">D8</div>
+        <input type='button' class="seat" value='D1'>
+        <input type='button' class="seat" value='D2'>
+        <input type='button' class="seat" value='D3'>
+        <input type='button' class="seat" value='D4'>
+        <input type='button' class="seat" value='D5'>
+        <input type='button' class="seat" value='D6'>
+        <input type='button' class="seat" value='D7'>
+        <input type='button' class="seat" value='D8'>
       </div>
 
       <div class="row">
-        <div class="seat">E1</div>
-        <div class="seat">E2</div>
-        <div class="seat">E3</div>
-        <div class="seat">E4</div>
-        <div class="seat">E5</div>
-        <div class="seat">E6</div>
-        <div class="seat">E7</div>
-        <div class="seat">E8</div>
+        <input type='button' class="seat" value='E1'>
+        <input type='button' class="seat" value='E2'>
+        <input type='button' class="seat" value='E3'>
+        <input type='button' class="seat" value='E4'>
+        <input type='button' class="seat" value='E5'>
+        <input type='button' class="seat" value='E6'>
+        <input type='button' class="seat" value='E7'>
+        <input type='button' class="seat" value='E8'>
       </div>
 
       <div class="row">
-        <div class="seat">F1</div>
-        <div class="seat">F2</div>
-        <div class="seat">F3</div>
-        <div class="seat">F4</div>
-        <div class="seat">F5</div>
-        <div class="seat">F6</div>
-        <div class="seat">F7</div>
-        <div class="seat">F8</div>
+        <input type='button' class="seat" value='F1'>
+        <input type='button' class="seat" value='F2'>
+        <input type='button' class="seat" value='F3'>
+        <input type='button' class="seat" value='F4'>
+        <input type='button' class="seat" value='F5'>
+        <input type='button' class="seat" value='F6'>
+        <input type='button' class="seat" value='F7'>
+        <input type='button' class="seat" value='F8'>
       </div>
     </div>
 
