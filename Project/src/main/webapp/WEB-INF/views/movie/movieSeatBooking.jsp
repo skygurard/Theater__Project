@@ -14,7 +14,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<!-- ${변수값으로 영화 날짜,영화관, 영화시간때 구현할것} moiveReserveBean<<에서 가져올것 -->
+	
     <div class="movie-container">
       <label>영화를 골라주세요:</label>
       <select id="movie">
