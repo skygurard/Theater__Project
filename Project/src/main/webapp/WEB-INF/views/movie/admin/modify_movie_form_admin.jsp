@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"   %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
 <%@ include file="../include/header_admin.jsp"%>
-
 <body>
 	<div class="formBox">
 		<h2>영화수정</h2>
@@ -16,49 +15,49 @@
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title" id="userName" value="${movieBean.title}"></td>
+						<td><input class="title" type="text" name="title" id="userName" value="${movieBean.title}"></td>
 					</tr>
 					<tr>
 						<th>감독</th>
-						<td><input type="text" name="director" id="userEmail" value="${movieBean.director}"></td>
+						<td><input class="director" type="text" name="director" id="userEmail" value="${movieBean.director}"></td>
 					</tr>
 					<tr>
 						<th>배우</th>
-						<td><input type="text" name="actor" id="subject" value="${movieBean.actor}"></td>
+						<td><input class="actor" type="text" name="actor" id="subject" value="${movieBean.actor}"></td>
 					</tr>
 					<tr>
 					<th>장르</th>
 						<td>
-							<input class="genreList" type="checkBox" name ="genre" value = "액션"><span>액션</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "드라마"><span>드라마</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "SF"><span>SF</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "공포"><span>공포</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "스릴러"><span>스릴러</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "미스터리"><span>미스터리</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "판타지"><span>판타지</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "다큐멘터리"><span>다큐멘터리</span><br>
-							<input class="genreList" type="checkBox" name ="genre" value = "성인"><span>성인</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "스포츠"><span>스포츠</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "코미디"><span>코미디</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "애니메이션"><span>애니메이션</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "로맨스"><span>로맨스</span>
-							<input class="genreList" type="checkBox" name ="genre" value = "범죄"><span>범죄</span>
+							<input class="genre" type="checkBox" name ="genre" value = "액션"><span>액션</span>
+							<input class="genre" type="checkBox" name ="genre" value = "드라마"><span>드라마</span>
+							<input class="genre" type="checkBox" name ="genre" value = "SF"><span>SF</span>
+							<input class="genre" type="checkBox" name ="genre" value = "공포"><span>공포</span>
+							<input class="genre" type="checkBox" name ="genre" value = "스릴러"><span>스릴러</span>
+							<input class="genre" type="checkBox" name ="genre" value = "미스터리"><span>미스터리</span>
+							<input class="genre" type="checkBox" name ="genre" value = "판타지"><span>판타지</span>
+							<input class="genre" type="checkBox" name ="genre" value = "다큐멘터리"><span>다큐멘터리</span><br>
+							<input class="genre" type="checkBox" name ="genre" value = "성인"><span>성인</span>
+							<input class="genre" type="checkBox" name ="genre" value = "스포츠"><span>스포츠</span>
+							<input class="genre" type="checkBox" name ="genre" value = "코미디"><span>코미디</span>
+							<input class="genre" type="checkBox" name ="genre" value = "애니메이션"><span>애니메이션</span>
+							<input class="genre" type="checkBox" name ="genre" value = "로맨스"><span>로맨스</span>
+							<input class="genre" type="checkBox" name ="genre" value = "범죄"><span>범죄</span>
 						</td>
 					</tr>
 					<tr>
-						<th>상영일</th>
-						<td><input type="text" id="releaseDate" name="releaseDate" value="${movieBean.releaseDate}"></td>
+						<th>개봉일</th>
+						<td><input class="releaseDate" type="text" id="releaseDate" name="releaseDate" value="${movieBean.releaseDate}"></td>
 					</tr>
 					<tr>
 						<th>상영종료일</th>
-						<td><input type="text" id="endDate" name="endDate" value="${movieBean.endDate}"></td>
+						<td><input class="endDate" type="text" id="endDate" name="endDate" value="${movieBean.endDate}"></td>
 					</tr>
 					<tr>
 						<th>러닝타임</th>
-						<td><input type="text" id="runningTime" name="runningTime" value="${movieBean.runningTime}"></td>
+						<td><input class="runningTime" type="text" id="runningTime" name="runningTime" value="${movieBean.runningTime}"></td>
 					</tr>
 					<tr>
-						<th>연령제한</th>
+						<th>관람가</th>
 						<td>
 							<input class="age" type="radio" name="age" value="전체관람가"><span>전체 관람가</span>
 							<input class="age" type="radio" name="age" value="12"><span>12세 이상</span>
@@ -68,15 +67,15 @@
 					</tr>
 					<tr>
 						<th>국가</th>
-						<td><input type="text" id="country" name="country" value="${movieBean.country}"></td>
+						<td><input class="country" type="text" id="country" name="country" value="${movieBean.country}"></td>
 					</tr>
 					<tr>
 						<th>영화정보</th>
-						<td><textarea name="info" id="info">${movieBean.info}</textarea></td>
+						<td><textarea class="info" name="info" id="info">${movieBean.info}</textarea></td>
 					</tr>
 					<tr>
 						<th>사진</th>
-						<td><input id="posterImg" type="file" name="multipartPosterImg" value="${movieBean.posterImg}"></td>
+						<td><input id="posterImg" type="file" name="multipartPosterImg"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
@@ -88,8 +87,10 @@
 				<input type="hidden" name="no" value="${movieBean.no }">
 				<input type="submit" value="확인" id="join">
 				<input type="reset" value="취소" id="cancel">
-				<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a>
-				<a href="ListMovie.do" id="join">회원용 영화목록</a>
+				<button type="button" id="ListMovieAdmin">관리자용 영화목록</button>
+				<button type="button" id="ListMovie">회원용 영화목록</button>
+<!-- 				<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a> -->
+<!-- 				<a href="ListMovie.do" id="join">회원용 영화목록</a> -->
 			</div>
 		</form>
 	</div>
@@ -99,8 +100,15 @@
 </html>
 
 <script>
-
 $(document).ready(function() {
+	
+	$("#ListMovieAdmin").on("click", function() {
+		$(location).attr("href", "ListMovieAdmin.do");
+	});
+	$("#ListMovie").on("click", function() {
+		$(location).attr("href", "ListMovie.do");
+	});
+	
 	$(function() {
         //오늘 날짜를 출력
         $("#today").text(new Date().toLocaleDateString());
@@ -150,7 +158,7 @@ $(document).ready(function() {
 	var i = 0;
 	
 	for(i=0; i < text.length; i++){
-  		$('.genreList').each(function(){
+  		$('.genre').each(function(){
   			if($(this).val() === text[i] ){
   				$(this).attr("checked", true); /* 선택 */				
   			}
@@ -163,6 +171,62 @@ $(document).ready(function() {
 			$(this).attr("checked", true);
 		}
 	})
+	
+
+	$("#joinForm #join").on("click",function() {
+		var isGenre = $("input:checkbox[name='genre']").is(":checked");
+		var isAge = $("input:radio[name='age']").is(':checked');
+		
+	    if($(".title").val().length<=0) {
+	        alert("제목은 필수 입력 사항입니다.");
+	        $(".title").focus();
+	        return false;
+	    } else if($(".director").val().length<=0){
+	        alert("감독은 필수 입력 사항입니다.");
+	        $(".director").focus();
+	        return false;
+	    } else if($(".actor").val().length<=0){
+	        alert("배우는 필수 입력 사항입니다.");
+	        $(".actor").focus();
+	        return false;
+	    } else if(!isGenre) {
+	    	alert("장르를 한 개 이상 선택하세요.");
+	        $(".genre").focus();
+	        return false;
+	    }  else if($(".releaseDate").val().length<=0){
+	        alert("개봉일 필수 입력 사항입니다.");
+	        $(".releaseDate").focus();
+	        return false;
+	    } else if($(".endDate").val().length<=0){
+	        alert("상영종료일은 필수 입력 사항입니다.");
+	        $(".endDate").focus();
+	        return false;
+	    } else if($(".runningTime").val().length<=0){
+	        alert("상영시간 필수 입력 사항입니다.");
+	        $(".runningTime").focus();
+	        return false;
+	    } else if(!isAge) {
+	    	alert("관람가는 필수 입력 사항입니다.");
+	    	$(".age").focus();
+	    	return false;
+	    } else if($(".country").val().length<=0){
+	        alert("국가는 필수 입력 사항입니다.");
+	        $(".country").focus();
+	        return false;
+	    } else if($(".info").val().length<=0){
+	        alert("영화정보는 필수 입력 사항입니다.");
+	        $(".info").focus();
+	        return false;
+	    } else if($("#posterImg").val().length<=0){
+	        alert("사진은 필수 입력 사항입니다.");
+	        $(".posterImg").focus();
+	        return false;
+	    } else {
+	    	$("#joinForm").submit();
+	    }
+	});	
+
+
 });
 
 </script>

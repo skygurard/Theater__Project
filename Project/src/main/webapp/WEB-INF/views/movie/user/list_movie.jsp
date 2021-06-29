@@ -78,6 +78,12 @@
 				</a>
 			</c:if>
 		</div>
+		<c:if test="${loggedMemberInfo.grade <= 2}">
+			<div id="hidBtns">
+				<a href="ListMovieAdmin.do" class="join">관리자용 영화목록</a>
+				<a href="InsertMovieForm.do" class="join">영화 등록</a>
+			</div>
+		</c:if>
 	
 	</div>
 	<%@ include file="../include/footer.jsp"%>
