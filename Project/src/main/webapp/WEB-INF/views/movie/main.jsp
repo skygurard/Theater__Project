@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,7 +27,7 @@
                     </h1>
                 <nav id="gnb">
                     <c:choose>
-                        <c:when test="${loggedMemberInfo!=null }" id="logIn">
+                        <c:when test="${loggedMemberInfo!=null }">
                             <ul class="menu1">
                                 <li>${loggedMemberInfo.name}님 환영합니다.</li>
                                 <li><a href="MemberInfo.do?no=${loggedMemberInfo.no}">회원정보수정</a></li>
@@ -37,8 +39,8 @@
                                 <%-- <li>${loggedMemberInfo.name}</li> --%>
                             </ul>
                         </c:when>
-                          <!-- 로그인 된 상황은 일단 display-none으로 해 두었습니다-->
-                        <c:otherwise id="logOut">
+                   
+                        <c:otherwise>
                             <ul class="menu1">
                                 <li><a href="MemberLoginForm.do">로그인</a></li>
                                 <li><a href="ListMovie.do">영화목록</a></li>

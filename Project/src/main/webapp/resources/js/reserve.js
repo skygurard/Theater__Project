@@ -153,7 +153,7 @@ function dayClickEvent(button) {
             list.classList.remove('movie-date-wrapper-active');
         });
         button.classList.add('movie-date-wrapper-active');
-        console.log(button.childNodes[1].innerHTML);
+       
         inputReserveDate.value =
             year +
             '.' +
