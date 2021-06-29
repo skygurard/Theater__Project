@@ -33,6 +33,12 @@
 					<c:if test="${loggedMemberInfo.grade == 3}">
 						<a href="ListMovie.do">영화목록</a>
 					</c:if>
+					<c:if test="${loggedMemberInfo.grade <= 2}">
+						<a href="MemberList.do">회원 관리</a>
+						<a href="InsertMovieForm.do">영화정보입력</a>
+						<a href="ListMovieAdmin.do">영화리스트보기</a>
+						
+					</c:if>
 					<li><a href="MemberLogOut.do">로그아웃</a></li>
 					<%-- <li>${loggedMemberInfo.name}</li> --%>
 					

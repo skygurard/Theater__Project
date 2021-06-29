@@ -14,7 +14,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<!-- ${변수값으로 영화 날짜,영화관, 영화시간때 구현할것} moiveReserveBean<<에서 가져올것 -->
+	
     <div class="movie-container">
       <label>영화를 골라주세요:</label>
       <select id="movie">
@@ -114,7 +114,7 @@
       선택한 좌석은 <span id="count">0</span> 결제하실 가격은<span id="total">0</span>
     </p>
     <div>
-      <form action="kakaoPay.do" method="GET"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
+      <form action="kakaoPay.do" method="GET"> 
         <input type="hidden" class="title" name="title">
         <input type="hidden" class="movieAge" name="movieAge">
         <input type="hidden" class="selectedTheater" name="selectedTheater">
