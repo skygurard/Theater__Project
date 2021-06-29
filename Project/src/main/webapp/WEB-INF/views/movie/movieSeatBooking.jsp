@@ -24,14 +24,8 @@
     String runningTime = request.getParameter("runningTime");
     %>
      
-      <label>영화를 골라주세요:</label>
-      <select id="movie">
-        <option value="10000"><%=title %></option>
-        <option value="10000"><%=age %></option>
-        <option value="10000"><%=selectedTheater %></option>
-        <option value="10000"><%=movieDate %></option>
-        <option value="10000"><%=runningTime %></option>
-      </select>
+      <label><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관 </label>
+
     </div>
 
     <ul class="showcase">
