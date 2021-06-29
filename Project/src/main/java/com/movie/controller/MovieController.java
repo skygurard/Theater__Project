@@ -7,30 +7,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.model.MovieBean;
 import com.movie.model.MovieDao;
 import com.movie.model.admin.AdminBean;
 import com.movie.model.admin.AdminDao;
+import com.movie.model.member.MemberBean;
+import com.movie.model.member.MemberDao;
 import com.movie.utils.PagingUtil;
 import com.movie.utils.ScriptWriterUtil;
 
@@ -39,15 +37,22 @@ public class MovieController {
 
 	@Autowired
 	MovieBean movieBean;
-
 	@Autowired
 	AdminBean adminBean;
+	@Autowired
+	MemberBean memberBean;
+	@Autowired
+	MemberBean loggedMemberInfo;
 	
 	@Autowired
 	MovieDao movieDao;
 	@Autowired
 	AdminDao adminDao;
+	@Autowired
+	MemberDao memberDao;
 
+	
+	
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
@@ -142,9 +147,11 @@ public class MovieController {
 	}
 	
 	@GetMapping("/ModifyMovieForm.do")
-	public String modifyMovieForm(int no, Model model) {
+	public String modifyMovieForm(int no, Model model, HttpServletRequest request) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
+		
+		
 		
 		return "movie/admin/modify_movie_form_admin";
 	}
@@ -193,24 +200,32 @@ public class MovieController {
 		
 		movieBean.setPosterImg(dbSavedFile);
 		
-		int result = movieDao.modifyMovie(movieBean);
+		String logPassword = loggedMemberInfo.getPassword();
+		String password = request.getParameter("password");
 		
-		if(result > 0) {
-			ScriptWriterUtil.alertAndNext(response, "글이 수정되었습니다.", "ListMovieAdmin.do");
-			return null;
-		} else {
-			ScriptWriterUtil.alertAndBack(response, "글이 수정되지 않았습니다.");
-			return null;
-		}
+		
+		if(logPassword.equals(password)) {
+			int result = movieDao.modifyMovie(movieBean);
+			
+			if(result > 0) {
+				ScriptWriterUtil.alertAndNext(response, "영화가 수정되었습니다.", "ListMovieAdmin.do");
+	            return null;
+	         } else {
+	            ScriptWriterUtil.alertAndBack(response, "영화가 수정되지 않았습니다.");
+	            return null;
+	         }
+	      } else {
+	         ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
+	         return null;
+	      }
 	}
 	
 	@GetMapping("/DeleteMovieForm.do")
-	public String deleteMovieForm(int no, Model model) {
+	public String deleteMovieForm(int no, Model model, HttpSession session) {
 		
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
 		model.addAttribute("no", no);
-		
 		return "movie/admin/delete_movie_form_admin";
 	}
 	
@@ -220,15 +235,23 @@ public class MovieController {
 							  HttpServletRequest request,
 							  HttpServletResponse response) throws IOException {
 		
-		int result = movieDao.deleteMovie(no);
+		String logPassword = loggedMemberInfo.getPassword();
+		String password = request.getParameter("password");
 		
-		if(result>0) {
-			ScriptWriterUtil.alertAndNext(response,"영화가 삭제되었습니다.","ListMovieAdmin.do");
-			return null;
-		} else {
-			ScriptWriterUtil.alertAndBack(response,"영화 삭제에 실패했습니다.");
-			return null;
-		}
+		if(logPassword.equals(password)) {
+			int result = movieDao.deleteMovie(no);
+			
+			if(result > 0) {
+				ScriptWriterUtil.alertAndNext(response, "영화가 삭제되었습니다.", "ListMovieAdmin.do");
+	            return null;
+	         } else {
+	            ScriptWriterUtil.alertAndBack(response, "영화가 삭제되지 않았습니다.");
+	            return null;
+	         }
+	      } else {
+	         ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
+	         return null;
+	      }
 	}
 	
 ///////////////////////////////////////////////////////////////////////
@@ -268,14 +291,16 @@ public class MovieController {
 		
 		return "movie/user/view_movie";
 	}
-@GetMapping("/MovieReserveList.do")
+	
+	@GetMapping("/MovieReserveList.do")
 	public String movieList(Model model) {
 		//MemberDao memberDao = new MemberDao();
 		List<MovieBean> movieList = movieDao.showAllMovie();
 		model.addAttribute("movieList", movieList);
 		return "movie/movieReserveList";
 	}
-@GetMapping("/Main.do")
+	
+	@GetMapping("/Main.do")
 	public String viewMain() {
 		
 		
