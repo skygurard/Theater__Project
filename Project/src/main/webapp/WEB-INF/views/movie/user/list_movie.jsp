@@ -8,19 +8,32 @@
 	
 		<div class="titleBox">
 			<div class="titleHeader">
-				<span>무비차트</span>
+				<span><a href="ListMovie.do">무비차트</a></span>
 			</div>
+			<form action="ListMovie.do" method="GET" id="id_searchForm">
+				<input type="hidden" id="id_currYn" name = "currYn" value = "N">
+				<span>
+					<select name="search">
+						<option value="ALL" ${param.search == "ALL" ? 'selected' : ''} >전체</option>
+						<option value="TITLE" ${param.search == "TITLE" ? 'selected' : ''}>제목</option>
+						<option value="DIRECTOR" ${param.search == "DIRECTOR" ? 'selected' : ''}>감독</option>
+						<option value="ACTOR" ${param.search == "ACTOR" ? 'selected' : ''}>배우</option>
+					</select>
+				</span>
+				<span>
+					<input name="word" type="text" placeholder="검색어를 입력하세요" value="${param.word}">
+					<button onclick= onClickSearch() >검색</button>
+				</span>
+			</form>
 			<div class="subMenu">
-				<a href="">무비차트</a>
-				<a href="">상영예정작</a>
+				<a href="ListMovie.do" class="chart">무비차트</a>
+				<a href="" class="show">상영예정작</a>
 			</div>
 		</div>
-		
 		<div class="now">
-			<input type="checkbox" for="now">
-			<label for="now">현재 상영작만 보기</label>
+			<input type="checkbox" id="id_currYnChk" value="N" ${param.currYn == "Y" ? 'checked' : ''}>
+			<label id="id_currYnTxt" for="id_currYnChk" style="cursor: pointer; ">현재 상영작만 보기</label>
 		</div>
-		
 		<div class="container">
 			<c:forEach var="movieBean" items="${movieList}" begin="0"
 				end="${movieList.size()}" step="1" varStatus="status">
@@ -57,8 +70,8 @@
 		
 		<div class="pagination">
 			<c:if test="${clickedPage != 1}">
-				<a href="ListMovie.do?clickedPage=${clickedPage - 1}"> <span
-					class="material-icons">navigate_before</span>
+				<a href="ListMovie.do?clickedPage=${clickedPage - 1}">
+					<span class="material-icons">navigate_before</span>
 				</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1"
@@ -73,8 +86,8 @@
 				</c:choose>
 			</c:forEach>
 			<c:if test="${clickedPage != endPage}">
-				<a href="ListMovie.do?clickedPage=${clickedPage + 1}"> <span
-					class="material-icons">navigate_next</span>
+				<a href="ListMovie.do?clickedPage=${clickedPage + 1}">
+					<span class="material-icons">navigate_next</span>
 				</a>
 			</c:if>
 		</div>
@@ -84,8 +97,27 @@
 				<a href="InsertMovieForm.do" class="join">영화 등록</a>
 			</div>
 		</c:if>
-	
 	</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
+<script>
+	$(document).ready(function() {
+		$('#id_currYnChk').change(function(){
+			onClickSearch();
+		});
+	});
+
+	function onClickSearch() {
+		if($('#id_currYnChk').is(":checked") == true){
+			$('#id_currYn').val("Y");			 
+		}else if($('#id_currYnChk').is(":checked") == false){
+			$('#id_currYn').val("N");
+		}
+		$("#id_searchForm").submit();
+	}
+	if($('#id_show').click(function() {
+		$('#show').val("Y");
+	}));
+</script>
+

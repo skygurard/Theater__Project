@@ -28,18 +28,23 @@ public class MovieDao {
 	}
 	
 	//전체 게시글
-	public List<MovieBean> getAllMovie(int start, int end) {
-		Map<String,Integer> page = new HashMap<String,Integer>();
-		page.put("start", start);
-		page.put("end", end);
+	public List<MovieBean> getAllMovie(int start, int end, String search, String word, String currYn, String show) {
+		Map<String,Object> page = new HashMap<String,Object>();
+		page.put("start"  , start);
+		page.put("end"    , end);
+		page.put("search" , search);
+		page.put("word"   , word);	
+		page.put("currYn"   , currYn);	
+		page.put("show"   , show);	
+		
 		//넘어오는 매개변수는 2개, sqlSession.selectList("getAllMovie", page); 넘길 수 있는 있는 건 id를 제외한 하나
 		//그래서 하나의 변수에 여러개를 담을 수 있는 HashMap을 이용해서 여러개의 데이터를 담고 이를 넘긴 
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<MovieBean> movieList = sqlSession.selectList("getAllMovie", page);
+		List<MovieBean> movieList = sqlSession.selectList("getAllMovie", page);		
+		
 		sqlSession.close();
 		return movieList;
 	}
-	
 	
 	public int insertMovie(MovieBean movieBean) {
 		int result = 0;
@@ -51,8 +56,6 @@ public class MovieDao {
 		
 		return result;
 	}
-	
-
 	
 	public MovieBean getSelectOneMovie(int no) {
 		MovieBean movieBean = new MovieBean();

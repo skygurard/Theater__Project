@@ -7,25 +7,49 @@
 	<select id= "getAllMovie" parameterType="hashMap" resultType="MovieBean">
 		SELECT *
 		FROM (
-		        SELECT A.*,
-		            ROWNUM AS RNUM
-		        FROM (
-		                SELECT  NO
-		                      , TITLE
-		                      , DIRECTOR
-		                      , ACTOR
-		                      , RELEASEDATE
-		                      , ENDDATE
-		                      , RUNNINGTIME
-		                      , COUNTRY
-		                      , INFO
-		                      , POSTERIMG
-		                      , GENRE
-		                      , AGE
-		                FROM MOVIE
-		                ORDER BY NO DESC
-		            ) A 
-		        WHERE ROWNUM <![CDATA[<=]]> #{end}
+	        SELECT A.*,
+	            ROWNUM AS RNUM
+	        FROM (
+	                SELECT  NO
+	                      , TITLE
+	                      , DIRECTOR
+	                      , ACTOR
+	                      , RELEASEDATE
+	                      , ENDDATE
+	                      , RUNNINGTIME
+	                      , COUNTRY
+	                      , INFO
+	                      , POSTERIMG
+	                      , GENRE
+	                      , AGE
+	                FROM MOVIE
+	                WHERE 1=1 
+	                
+	                <if test ="search != null and search != '' ">
+	                	<choose>
+	                		<when test = " search == 'ALL' ">
+	                			AND (TITLE LIKE '%'||#{word}||'%' OR DIRECTOR LIKE '%'||#{word}||'%' OR ACTOR LIKE '%'||#{word}||'%')
+	                		</when>
+                			<when test = " search == 'TITLE'">
+                				AND TITLE LIKE '%'||#{word}||'%'
+                			</when>
+                			<when test = " search == 'DIRECTOR'">
+                				AND DIRECTOR LIKE '%'||#{word}||'%'
+                			</when>
+                			<when test = " search == 'ACTOR' ">
+                				AND ACTOR LIKE '%'||#{word}||'%'
+                			</when>
+	                	</choose>
+	                </if>
+	                <if test ="currYn != null and currYn != '' ">
+	                
+	                	<if test ='currYn ==  "Y" '>
+	                		AND TO_CHAR(SYSDATE , 'YYYY-MM-DD' ) BETWEEN RELEASEDATE AND ENDDATE
+	                	</if>
+	                </if>
+	                ORDER BY NO DESC
+	            ) A 
+	        WHERE ROWNUM <![CDATA[<=]]> #{end}
 		    )
 		WHERE RNUM <![CDATA[>=]]> #{start}
 	</select>
@@ -83,6 +107,7 @@
 		                SELECT  NO
 		                      , TITLE
 		                      , AGE
+		                      , POSTERIMG
 		                FROM MOVIE
 		                ORDER BY NO DESC
 		            ) 

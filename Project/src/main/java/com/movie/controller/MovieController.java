@@ -50,8 +50,6 @@ public class MovieController {
 	AdminDao adminDao;
 	@Autowired
 	MemberDao memberDao;
-
-	
 	
 	// 관리자 페이지 매핑 
 	@GetMapping("/InsertMovieForm.do")
@@ -118,12 +116,16 @@ public class MovieController {
 	public String listMovieAdmin(HttpServletRequest request, Model model) {
 		
 		String clickedPage = request.getParameter("clickedPage");
+		String search = request.getParameter("search");
+		String word = request.getParameter("word");
+		String currYn = request.getParameter("currYn");
+		String show = request.getParameter("show");
 		int total 		   = 0;
 		total 			   = movieDao.getTotalMovie();
 		
 		HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
 
-		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
+		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"),search,word,currYn, show);
 		
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("numbering", dataMap.get("numbering"));
@@ -150,8 +152,6 @@ public class MovieController {
 	public String modifyMovieForm(int no, Model model, HttpServletRequest request) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		
-		
 		
 		return "movie/admin/modify_movie_form_admin";
 	}
@@ -264,9 +264,14 @@ public class MovieController {
 	int total 		   = 0;
 	total 			   = movieDao.getTotalMovie();
 	
-	HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
+	String search = request.getParameter("search");
+	String word = request.getParameter("word");
+	String currYn = request.getParameter("currYn");
+	String show = request.getParameter("show");
 	
-	List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"));
+	HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
+
+	List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"), search, word, currYn, show);
 	
 	model.addAttribute("movieList", movieList);
 	model.addAttribute("numbering", dataMap.get("numbering"));
@@ -278,7 +283,7 @@ public class MovieController {
 	model.addAttribute("currentPage", dataMap.get("currentPage"));
 	model.addAttribute("paginationTotal", dataMap.get("paginationTotal"));
 	model.addAttribute("pagePerCount", dataMap.get("pagePerCount"));
-	
+
 	return "movie/user/list_movie";
 	
 	}
