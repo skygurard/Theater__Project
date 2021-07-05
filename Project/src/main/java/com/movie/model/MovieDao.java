@@ -28,19 +28,33 @@ public class MovieDao {
 	}
 	
 	//전체 게시글
-	public List<MovieBean> getAllMovie(int start, int end, String search, String word, String currYn, String show) {
+	public List<MovieBean> getAllMovie(int start, int end, String search, String word, String currYn) {
 		Map<String,Object> page = new HashMap<String,Object>();
 		page.put("start"  , start);
 		page.put("end"    , end);
 		page.put("search" , search);
 		page.put("word"   , word);	
 		page.put("currYn"   , currYn);	
-		page.put("show"   , show);	
 		
 		//넘어오는 매개변수는 2개, sqlSession.selectList("getAllMovie", page); 넘길 수 있는 있는 건 id를 제외한 하나
 		//그래서 하나의 변수에 여러개를 담을 수 있는 HashMap을 이용해서 여러개의 데이터를 담고 이를 넘긴 
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<MovieBean> movieList = sqlSession.selectList("getAllMovie", page);		
+		
+		sqlSession.close();
+		return movieList;
+	}
+	
+	public List<MovieBean> getDeletedMovie(int start, int end, String search, String word, String currYn) {
+		Map<String,Object> page = new HashMap<String,Object>();
+		page.put("start"  , start);
+		page.put("end"    , end);
+		page.put("search" , search);
+		page.put("word"   , word);	
+		page.put("currYn"   , currYn);	
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<MovieBean> movieList = sqlSession.selectList("getDeletedMovie", page);		
 		
 		sqlSession.close();
 		return movieList;
@@ -66,10 +80,19 @@ public class MovieDao {
 		return movieBean;
 	}
 	
-	public int deleteMovie(int no) {
+	public int deleteMovie(MovieBean movieBean) {
 		int result = 0;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		result = sqlSession.delete("deleteMovie",no);
+		result = sqlSession.update("deleteMovie", movieBean);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
+	
+	public int restoreMovie(MovieBean movieBean) {
+		int result = 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		result = sqlSession.update("restoreMovie", movieBean);
 		sqlSession.commit();
 		sqlSession.close();
 		return result;
@@ -84,8 +107,6 @@ public class MovieDao {
 		return result;
 	}
 	
-
-	
 	public int getTotalMovie() {
 		int total = 0;
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -94,7 +115,7 @@ public class MovieDao {
 		return total;
 	}
 
-public List<MovieBean> showAllMovie(){
+	public List<MovieBean> showAllMovie(){
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<MovieBean> movieList =sqlSession.selectList("showAllMovie");
 		sqlSession.close();

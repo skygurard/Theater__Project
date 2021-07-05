@@ -43,275 +43,421 @@ public class MovieController {
 	MemberBean memberBean;
 	@Autowired
 	MemberBean loggedMemberInfo;
-	
+
 	@Autowired
 	MovieDao movieDao;
 	@Autowired
 	AdminDao adminDao;
 	@Autowired
 	MemberDao memberDao;
-	
-	// 관리자 페이지 매핑 
+
+	// 관리자 페이지 매핑
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
 		return "movie/admin/insert_movie";
 	}
-	
+
 	@RequestMapping("/InsertMovie.do")
 	public String insertMovie(MovieBean movieBean,
 							  HttpServletRequest request,
 							  HttpServletResponse response,
 							  MultipartFile multipartPosterImg) throws IOException {
-		
+
 		Date nowdate 			    = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
-		
+
 		String[] genreList = request.getParameterValues("genre");
-		String genreText   ="";
-		
-		if(genreList != null) {
-			for(int i=0; i<genreList.length;i++) {
-				if(genreText.equals("")) {
+		String genreText   = "";
+
+		if (genreList != null) {
+			for (int i = 0; i < genreList.length; i++) {
+				if (genreText.equals("")) {
 					genreText = genreList[i];
-				}else {
-					genreText += "/"+ genreList[i];
+				} else {
+					genreText += "/" + genreList[i];
 				}
 			}
-			movieBean.setGenre(genreText); //  genreText = 공포/스릴러/범죄
+			movieBean.setGenre(genreText); // genreText = 공포/스릴러/범죄
 		} else {
 			movieBean.setGenre("");
-		};
-		
-		String context 			= request.getContextPath();
-		String fileRoot 		= "C:\\movieproject_image\\";
+		}
+		;
+
+		String context 		 	= request.getContextPath();
+		String fileRoot 	 	= "C:\\movieproject_image\\";
 		String originalFileName = multipartPosterImg.getOriginalFilename();
 		String extension 		= FilenameUtils.getExtension(originalFileName);
-		String savedFileName 	= dbDate+"."+extension;
+		String savedFileName 	= dbDate + "." + extension;
 		File targetFile 		= new File(fileRoot + savedFileName);
 		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
 
 		movieBean.setPosterImg(dbSavedFile);
-		
+
 		try {
 			InputStream fileStream = multipartPosterImg.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-		} catch(IOException e) {
+		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);
 			e.printStackTrace();
 		}
-		
+
 		int result = movieDao.insertMovie(movieBean);
-		
+
 		if (result > 0) {
-			ScriptWriterUtil.alertAndNext(response, "영화등록이 완료되었습니다.","ListMovie.do");
+			ScriptWriterUtil.alertAndNext(response, "영화등록이 완료되었습니다.", "ListMovie.do");
 			return null;
 		} else {
 			ScriptWriterUtil.alertAndBack(response, "등록에 실패하였습니다.");
 			return null;
 		}
 	}
-	
+
 	@GetMapping("/ListMovieAdmin.do")
 	public String listMovieAdmin(HttpServletRequest request, Model model) {
-		
+
 		String clickedPage = request.getParameter("clickedPage");
-		String search = request.getParameter("search");
-		String word = request.getParameter("word");
-		String currYn = request.getParameter("currYn");
-		String show = request.getParameter("show");
-		int total 		   = 0;
-		total 			   = movieDao.getTotalMovie();
-		
+		String search 	   = request.getParameter("search");
+		String word 	   = request.getParameter("word");
+		String currYn 	   = request.getParameter("currYn");
+
+		int total = 0;
+		total 	  = movieDao.getTotalMovie();
+
 		HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
 
-		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"),search,word,currYn, show);
-		
-		model.addAttribute("movieList", movieList);
-		model.addAttribute("numbering", dataMap.get("numbering"));
-		model.addAttribute("pageGroup", dataMap.get("pageGroup"));
-		model.addAttribute("startPage", dataMap.get("startPage"));
-		model.addAttribute("endPage", dataMap.get("endPage"));
-		model.addAttribute("total", total);
-		model.addAttribute("clickedPage", clickedPage);
-		model.addAttribute("currentPage", dataMap.get("currentPage"));
-		
+		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"), search, word, currYn);
+
+		model.addAttribute("movieList",    movieList);
+		model.addAttribute("numbering",    dataMap.get("numbering"));
+		model.addAttribute("pageGroup",    dataMap.get("pageGroup"));
+		model.addAttribute("startPage",    dataMap.get("startPage"));
+		model.addAttribute("endPage",  	   dataMap.get("endPage"));
+		model.addAttribute("total", 	   total);
+		model.addAttribute("clickedPage",  clickedPage);
+		model.addAttribute("currentPage",  dataMap.get("currentPage"));
+
 		return "movie/admin/list_movie_admin";
 	}
-	
+
+	@GetMapping("/DeletedListMovieAdmin.do")
+	public String deletedListMovieAdmin(HttpServletRequest request, Model model) {
+
+		String clickedPage = request.getParameter("clickedPage");
+		String search 	   = request.getParameter("search");
+		String word 	   = request.getParameter("word");
+		String currYn 	   = request.getParameter("currYn");
+
+		int total = 0;
+		total 	  = movieDao.getTotalMovie();
+
+		HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
+
+		List<MovieBean> movieList = movieDao.getDeletedMovie(dataMap.get("start"), dataMap.get("end"), search, word, currYn);
+
+		model.addAttribute("movieList",    movieList);
+		model.addAttribute("numbering",    dataMap.get("numbering"));
+		model.addAttribute("pageGroup",    dataMap.get("pageGroup"));
+		model.addAttribute("startPage",    dataMap.get("startPage"));
+		model.addAttribute("endPage", 	   dataMap.get("endPage"));
+		model.addAttribute("total", 	   total);
+		model.addAttribute("clickedPage",  clickedPage);
+		model.addAttribute("currentPage",  dataMap.get("currentPage"));
+
+		return "movie/admin/deleted_list_movie_admin";
+	}
+
 	@GetMapping("/ViewMovieAdmin.do")
 	public String viewMovie(Model model, int no) {
-		
+
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		
+
 		return "movie/admin/view_movie_admin";
 	}
 	
+	@GetMapping("/ViewDeletedMovieAdmin.do")
+	public String viewDeletedMovie(Model model, int no) {
+
+		movieBean = movieDao.getSelectOneMovie(no);
+		model.addAttribute("movieBean", movieBean);
+
+		return "movie/admin/deleted_view_movie_admin";
+	}
+
 	@GetMapping("/ModifyMovieForm.do")
 	public String modifyMovieForm(int no, Model model, HttpServletRequest request) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		
+
 		return "movie/admin/modify_movie_form_admin";
 	}
-	
+
 	@PostMapping("/ModifyMovie.do")
 	public String boardModify(MovieBean movieBean,
 							  HttpServletRequest request,
 							  HttpServletResponse response,
 							  MultipartFile multipartPosterImg) throws IOException {
-		
-		Date nowdate 			    = new Date();
+
+		Date nowdate 				= new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 		String dbDate 				= dateFormat.format(nowdate);
-		
+
 		String[] genreList = request.getParameterValues("genre");
-		String genreText   ="";
-		
-		if(genreList != null) {
-			for(int i=0; i<genreList.length;i++) {
-				if(genreText.equals("")) {
+		String genreText   = "";
+
+		if (genreList != null) {
+			for (int i = 0; i < genreList.length; i++) {
+				if (genreText.equals("")) {
 					genreText = genreList[i];
-				}else {
-					genreText += "/"+ genreList[i];
+				} else {
+					genreText += "/" + genreList[i];
 				}
 			}
-			movieBean.setGenre(genreText); //  genreText = 공포/스릴러/범죄
+			movieBean.setGenre(genreText); // genreText = 공포/스릴러/범죄
 		} else {
 			movieBean.setGenre("");
 		};
-		
-		String context 			= request.getContextPath();
+
+		String context 		 	= request.getContextPath();
 		String fileRoot 		= "C:\\movieproject_image\\";
 		String originalFileName = multipartPosterImg.getOriginalFilename();
 		String extension 		= FilenameUtils.getExtension(originalFileName);
-		String savedFileName 	= dbDate+"."+extension;
+		String savedFileName 	= dbDate + "." + extension;
 		File targetFile 		= new File(fileRoot + savedFileName);
 		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
 
 		try {
 			InputStream fileStream = multipartPosterImg.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-		} catch(IOException e) {
+		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);
 			e.printStackTrace();
 		}
-		
+
 		movieBean.setPosterImg(dbSavedFile);
-		
+
 		String logPassword = loggedMemberInfo.getPassword();
-		String password = request.getParameter("password");
-		
-		
-		if(logPassword.equals(password)) {
+		String password    = request.getParameter("password");
+
+		if (logPassword.equals(password)) {
 			int result = movieDao.modifyMovie(movieBean);
-			
-			if(result > 0) {
+
+			if (result > 0) {
 				ScriptWriterUtil.alertAndNext(response, "영화가 수정되었습니다.", "ListMovieAdmin.do");
-	            return null;
-	         } else {
-	            ScriptWriterUtil.alertAndBack(response, "영화가 수정되지 않았습니다.");
-	            return null;
-	         }
-	      } else {
-	         ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
-	         return null;
-	      }
+				return null;
+			} else {
+				ScriptWriterUtil.alertAndBack(response, "영화가 수정되지 않았습니다.");
+				return null;
+			}
+		} else {
+			ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
+			return null;
+		}
 	}
-	
+
 	@GetMapping("/DeleteMovieForm.do")
-	public String deleteMovieForm(int no, Model model, HttpSession session) {
-		
+	public String deleteMovieForm(int no, Model model, HttpServletRequest request) {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		model.addAttribute("no", no);
+
 		return "movie/admin/delete_movie_form_admin";
 	}
-	
+
 	@RequestMapping("/DeleteMovie.do")
-	public String deleteMovie(int no,
-							  Model model,
+	public String deleteMovie(MovieBean movieBean,
 							  HttpServletRequest request,
-							  HttpServletResponse response) throws IOException {
-		
+							  HttpServletResponse response,
+							  MultipartFile multipartPosterImg) throws IOException {
+
+		Date nowdate 			    = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+		String dbDate 				= dateFormat.format(nowdate);
+
+		String[] genreList = request.getParameterValues("genre");
+		String genreText   = "";
+
+		if (genreList != null) {
+			for (int i = 0; i < genreList.length; i++) {
+				if (genreText.equals("")) {
+					genreText = genreList[i];
+				} else {
+					genreText += "/" + genreList[i];
+				}
+			}
+			movieBean.setGenre(genreText); // genreText = 공포/스릴러/범죄
+		} else {
+			movieBean.setGenre("");
+		};
+
+		String context 			= request.getContextPath();
+		String fileRoot 		= "C:\\movieproject_image\\";
+		String originalFileName = multipartPosterImg.getOriginalFilename();
+		String extension 		= FilenameUtils.getExtension(originalFileName);
+		String savedFileName 	= dbDate + "." + extension;
+		File targetFile 		= new File(fileRoot + savedFileName);
+		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
+
+		try {
+			InputStream fileStream = multipartPosterImg.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile);
+			e.printStackTrace();
+		}
+
+		movieBean.setPosterImg(dbSavedFile);
+
 		String logPassword = loggedMemberInfo.getPassword();
-		String password = request.getParameter("password");
-		
-		if(logPassword.equals(password)) {
-			int result = movieDao.deleteMovie(no);
-			
-			if(result > 0) {
+		String password   = request.getParameter("password");
+
+		if (logPassword.equals(password)) {
+			int result = movieDao.deleteMovie(movieBean);
+
+			if (result > 0) {
 				ScriptWriterUtil.alertAndNext(response, "영화가 삭제되었습니다.", "ListMovieAdmin.do");
-	            return null;
-	         } else {
-	            ScriptWriterUtil.alertAndBack(response, "영화가 삭제되지 않았습니다.");
-	            return null;
-	         }
-	      } else {
-	         ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
-	         return null;
-	      }
+				return null;
+			} else {
+				ScriptWriterUtil.alertAndBack(response, "영화 삭제를 실패했습니다..");
+				return null;
+			}
+		} else {
+			ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
+			return null;
+		}
 	}
 	
-///////////////////////////////////////////////////////////////////////
-	// user페이지 매핑
+	@GetMapping("/RestoreMovieForm.do")
+	public String restoreMovieForm(int no, Model model, HttpServletRequest request) {
+		movieBean = movieDao.getSelectOneMovie(no);
+		model.addAttribute("movieBean", movieBean);
+
+		return "movie/admin/restore_movie_form_admin";
+	}
+	
+	
+	@PostMapping("/RestoreMovie.do")
+	public String restorMovie(MovieBean movieBean,
+							  HttpServletRequest request,
+							  HttpServletResponse response,
+							  MultipartFile multipartPosterImg) throws IOException {
+
+		Date nowdate 				= new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+		String dbDate 				= dateFormat.format(nowdate);
+
+		String[] genreList = request.getParameterValues("genre");
+		String genreText   = "";
+
+		if (genreList != null) {
+			for (int i = 0; i < genreList.length; i++) {
+				if (genreText.equals("")) {
+					genreText = genreList[i];
+				} else {
+					genreText += "/" + genreList[i];
+				}
+			}
+			movieBean.setGenre(genreText); // genreText = 공포/스릴러/범죄
+		} else {
+			movieBean.setGenre("");
+		};
+
+		String context 		 	= request.getContextPath();
+		String fileRoot 		= "C:\\movieproject_image\\";
+		String originalFileName = multipartPosterImg.getOriginalFilename();
+		String extension 		= FilenameUtils.getExtension(originalFileName);
+		String savedFileName 	= dbDate + "." + extension;
+		File targetFile 		= new File(fileRoot + savedFileName);
+		String dbSavedFile 		= context + "/movieProject/" + savedFileName;
+
+		try {
+			InputStream fileStream = multipartPosterImg.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile);
+			e.printStackTrace();
+		}
+
+		movieBean.setPosterImg(dbSavedFile);
+
+		String logPassword = loggedMemberInfo.getPassword();
+		String password    = request.getParameter("password");
+
+		if (logPassword.equals(password)) {
+			int result = movieDao.restoreMovie(movieBean);
+
+			if (result > 0) {
+				ScriptWriterUtil.alertAndNext(response, "영화가 복원되었습니다.", "DeletedListMovieAdmin.do");
+				return null;
+			} else {
+				ScriptWriterUtil.alertAndBack(response, "영화가 복원되지 않았습니다.");
+				return null;
+			}
+		} else {
+			ScriptWriterUtil.alertAndBack(response, "비밀번호를 확인해 주세요.");
+			return null;
+		}
+	}
+	
+	
+
+	///////////////////////////////////////////////////////////////////////
+	// user페이지 매핑///////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////
+	
 	
 	@GetMapping("/ListMovie.do")
 	public String listMovie(MovieBean movieBean, HttpServletRequest request, Model model) {
-		
-	String clickedPage = request.getParameter("clickedPage");
-	int total 		   = 0;
-	total 			   = movieDao.getTotalMovie();
-	
-	String search = request.getParameter("search");
-	String word = request.getParameter("word");
-	String currYn = request.getParameter("currYn");
-	String show = request.getParameter("show");
-	
-	HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
 
-	List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"), search, word, currYn, show);
-	
-	model.addAttribute("movieList", movieList);
-	model.addAttribute("numbering", dataMap.get("numbering"));
-	model.addAttribute("pageGroup", dataMap.get("pageGroup"));
-	model.addAttribute("startPage", dataMap.get("startPage"));
-	model.addAttribute("endPage", dataMap.get("endPage"));
-	model.addAttribute("total", total);
-	model.addAttribute("clickedPage", clickedPage);
-	model.addAttribute("currentPage", dataMap.get("currentPage"));
-	model.addAttribute("paginationTotal", dataMap.get("paginationTotal"));
-	model.addAttribute("pagePerCount", dataMap.get("pagePerCount"));
+		String clickedPage = request.getParameter("clickedPage");
+		int total 		   = 0;
+		total 			   = movieDao.getTotalMovie();
 
-	return "movie/user/list_movie";
-	
+		String search = request.getParameter("search");
+		String word   = request.getParameter("word");
+		String currYn = request.getParameter("currYn");
+
+		HashMap<String, Integer> dataMap = PagingUtil.setPaging(clickedPage, total);
+
+		List<MovieBean> movieList = movieDao.getAllMovie(dataMap.get("start"), dataMap.get("end"), search, word, currYn);
+
+		model.addAttribute("movieList", 	   movieList);
+		model.addAttribute("numbering", 	   dataMap.get("numbering"));
+		model.addAttribute("pageGroup", 	   dataMap.get("pageGroup"));
+		model.addAttribute("startPage", 	   dataMap.get("startPage"));
+		model.addAttribute("endPage", 		   dataMap.get("endPage"));
+		model.addAttribute("total", 		   total);
+		model.addAttribute("clickedPage", 	   clickedPage);
+		model.addAttribute("currentPage", 	   dataMap.get("currentPage"));
+		model.addAttribute("paginationTotal",  dataMap.get("paginationTotal"));
+		model.addAttribute("pagePerCount", 	   dataMap.get("pagePerCount"));
+
+		return "movie/user/list_movie";
+
 	}
-	
+
 	@GetMapping("/ViewMovie.do")
 	public String viewMovie(int no, Model model) {
-		
+
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
-		
+
 		return "movie/user/view_movie";
 	}
-	
+
 	@GetMapping("/MovieReserveList.do")
 	public String movieList(Model model) {
-		//MemberDao memberDao = new MemberDao();
 		List<MovieBean> movieList = movieDao.showAllMovie();
 		model.addAttribute("movieList", movieList);
+		
 		return "movie/movieReserveList";
 	}
-	
-	
+
 	@GetMapping("/Main.do")
 	public String viewMain(Model model) {
-		
 		List<MovieBean> movieList = movieDao.showAllMovie();
 		model.addAttribute("movieList", movieList);
-		
+
 		return "movie/main";
 	}
 }

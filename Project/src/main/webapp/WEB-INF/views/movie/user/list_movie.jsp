@@ -25,10 +25,10 @@
 					<button onclick= onClickSearch() >검색</button>
 				</span>
 			</form>
-			<div class="subMenu">
-				<a href="ListMovie.do" class="chart">무비차트</a>
-				<a href="" class="show">상영예정작</a>
-			</div>
+<!-- 			<div class="subMenu"> -->
+<!-- 				<a href="" class="chart">무비차트</a> -->
+<!-- 				<a href="" class="chart">개봉예정작</a> -->
+<!-- 			</div> -->
 		</div>
 		<div class="now">
 			<input type="checkbox" id="id_currYnChk" value="N" ${param.currYn == "Y" ? 'checked' : ''}>
@@ -116,8 +116,6 @@
 		}
 		$("#id_searchForm").submit();
 	}
-	if($('#id_show').click(function() {
-		$('#show').val("Y");
-	}));
+
 </script>
 

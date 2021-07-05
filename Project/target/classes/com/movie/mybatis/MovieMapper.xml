@@ -23,8 +23,8 @@
 	                      , GENRE
 	                      , AGE
 	                FROM MOVIE
-	                WHERE 1=1 
-	                
+	                WHERE 1=1
+	                	AND DB_STATUS = 'A'
 	                <if test ="search != null and search != '' ">
 	                	<choose>
 	                		<when test = " search == 'ALL' ">
@@ -42,17 +42,74 @@
 	                	</choose>
 	                </if>
 	                <if test ="currYn != null and currYn != '' ">
-	                
 	                	<if test ='currYn ==  "Y" '>
 	                		AND TO_CHAR(SYSDATE , 'YYYY-MM-DD' ) BETWEEN RELEASEDATE AND ENDDATE
 	                	</if>
 	                </if>
+<!-- 		                		AND TO_CHAR( SYSDATE  , 'YYYY-MM-DD' ) <![CDATA[<]]> RELEASEDATE // 개봉예정작 -->
 	                ORDER BY NO DESC
 	            ) A 
 	        WHERE ROWNUM <![CDATA[<=]]> #{end}
 		    )
 		WHERE RNUM <![CDATA[>=]]> #{start}
 	</select>
+	
+	<select id= "getDeletedMovie" parameterType="hashMap" resultType="MovieBean">
+		SELECT *
+		FROM (
+	        SELECT A.*,
+	            ROWNUM AS RNUM
+	        FROM (
+	                SELECT  NO
+	                      , TITLE
+	                      , DIRECTOR
+	                      , ACTOR
+	                      , RELEASEDATE
+	                      , ENDDATE
+	                      , RUNNINGTIME
+	                      , COUNTRY
+	                      , INFO
+	                      , POSTERIMG
+	                      , GENRE
+	                      , AGE
+	                FROM MOVIE
+	                WHERE 1=1
+	                	AND DB_STATUS = 'D'
+	                <if test ="search != null and search != '' ">
+	                	<choose>
+	                		<when test = " search == 'ALL' ">
+	                			AND (TITLE LIKE '%'||#{word}||'%' OR DIRECTOR LIKE '%'||#{word}||'%' OR ACTOR LIKE '%'||#{word}||'%')
+	                		</when>
+                			<when test = " search == 'TITLE'">
+                				AND TITLE LIKE '%'||#{word}||'%'
+                			</when>
+                			<when test = " search == 'DIRECTOR'">
+                				AND DIRECTOR LIKE '%'||#{word}||'%'
+                			</when>
+                			<when test = " search == 'ACTOR' ">
+                				AND ACTOR LIKE '%'||#{word}||'%'
+                			</when>
+	                	</choose>
+	                </if>
+	                
+	                <if test ="currYn != null and currYn != '' ">
+	                	<if test ='currYn ==  "Y" '>
+	                		AND TO_CHAR(SYSDATE , 'YYYY-MM-DD' ) BETWEEN RELEASEDATE AND ENDDATE
+	                	</if>
+	                </if>
+<!-- 		                		AND TO_CHAR( SYSDATE  , 'YYYY-MM-DD' ) <![CDATA[<]]> RELEASEDATE // 개봉예정작 -->
+	                ORDER BY NO DESC
+	            ) A 
+	        WHERE ROWNUM <![CDATA[<=]]> #{end}
+		    )
+		WHERE RNUM <![CDATA[>=]]> #{start}
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	<!-- 영화등록 -->
 	<insert id = "insertMovie" parameterType="MovieBean">
@@ -69,6 +126,7 @@
             , POSTERIMG
             , GENRE
             , AGE
+            , DB_STATUS
 		)
 		VALUES (
 			  MOVIE_SEQ.NEXTVAL
@@ -83,6 +141,7 @@
 			, #{posterImg}
 			, #{genre}
 			, #{age}
+			, 'A'
 		)
 	</insert>
 	<select id = "getSelectOneMovie" parameterType="Integer" resultType="MovieBean">
@@ -112,9 +171,21 @@
 		                ORDER BY NO DESC
 		            ) 
 	</select>
-	<delete id="deleteMovie" parameterType="Integer">
-		DELETE FROM MOVIE WHERE NO = #{no}
-	</delete>
+	<update id="deleteMovie" parameterType="MovieBean">
+<!-- 		DELETE FROM MOVIE WHERE NO = #{no} -->
+		UPDATE MOVIE
+		SET
+			DB_STATUS = 'D'
+			WHERE NO  = #{no}
+	</update>
+	
+	<update id="restoreMovie" parameterType="MovieBean">
+		UPDATE MOVIE
+		SET
+			DB_STATUS = 'A'
+			WHERE NO  = #{no}
+			
+	</update>
 	
 	<update id="modifyMovie" parameterType="MovieBean">
 		UPDATE MOVIE SET
@@ -136,4 +207,10 @@
 	<select id="getTotalMovie" resultType="Integer">
 		SELECT COUNT(*) AS TOTAL FROM MOVIE
 	</select>
+	
+	
+	
+<!-- 	<delete id="deleteMovie" parameterType="Integer"> -->
+<!-- 		DELETE FROM MOVIE WHERE NO = #{no} -->
+<!-- 	</delete> -->
 </mapper>

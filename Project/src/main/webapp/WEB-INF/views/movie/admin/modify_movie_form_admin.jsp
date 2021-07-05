@@ -87,8 +87,8 @@
 				<input type="hidden" name="no" value="${movieBean.no }">
 				<input type="submit" value="확인" id="join">
 				<input type="reset" value="취소" id="cancel">
-				<button type="button" id="ListMovieAdmin">관리자용 영화목록</button>
 				<button type="button" id="ListMovie">회원용 영화목록</button>
+				<button type="button" id="ListMovieAdmin">관리자용 영화목록</button>
 <!-- 				<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a> -->
 <!-- 				<a href="ListMovie.do" id="join">회원용 영화목록</a> -->
 			</div>

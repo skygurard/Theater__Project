@@ -26,5 +26,6 @@ public class MovieBean {
 	private String posterImg;
 	private String genre;
 	private String age;
+	private String DB_STATUS;
 	
 }

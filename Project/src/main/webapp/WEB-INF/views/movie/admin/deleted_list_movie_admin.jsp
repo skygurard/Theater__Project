@@ -5,8 +5,8 @@
 <%@ include file="../include/header_admin.jsp"%>
 <body>
 	<div class="formBox" id="list">
-		<h2>관리자용 영화리스트</h2>
-		<form action="ListMovieAdmin.do" method="GET" id="id_searchForm">
+		<h2>관리자용 삭제된 영화리스트</h2>
+		<form action="DeletedListMovieAdmin.do" method="GET" id="id_searchForm">
 			<input type="hidden" id="id_currYn" name = "currYn" value = "N">
 			<span>
 				<select name="search">
@@ -31,9 +31,10 @@
 					<col style="width:70px">
 					<col style="width:100px">
 					<col style="width:360px">
-					<col style="width:100px">
-					<col style="width:140px">
-					<col style="width:140px">
+					<col style="width:80px">
+					<col style="width:120px">
+					<col style="width:120px">
+					<col style="width:60px">
 				</colgroup>
 				<thead>
 					<tr>
@@ -43,6 +44,7 @@
 						<th>연령</th>
 						<th>개봉일</th>
 						<th>상영종료일</th>
+						<th>복원</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +52,7 @@
 						<tr>
 							<td><img src ="${movieBean.posterImg}" class="posterImg"></td>
 							<td>${movieBean.no}</td>
-							<td><a href="ViewMovieAdmin.do?no=${movieBean.no}">${movieBean.title}</a></td>
+							<td><a href="ViewDeletedMovieAdmin.do?no=${movieBean.no}">${movieBean.title}</a></td>
 							
 							<c:choose>
 								<c:when test="${movieBean.age == '12'}">
@@ -68,6 +70,7 @@
 						</c:choose>
 							<td>${movieBean.releaseDate}</td>
 							<td>${movieBean.endDate}</td>
+							<td><a href="RestoreMovieForm.do?no=${movieBean.no}" class="btns" value = "${movieBean.no}" style="text-align:center; margin-top:0">복원</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -99,7 +102,7 @@
 		<div class="btns">
 			<a href="InsertMovieForm.do" id="join">영화등록</a>
 			<a href="ListMovie.do" id="join">회원용 영화목록</a>
-			<a href="DeletedListMovieAdmin.do" id="join">삭제된 영화목록</a>
+			<a href="ListMovieAdmin.do" id="join">관리자용 영화목록</a>
 		</div>
 		
 	</div>
