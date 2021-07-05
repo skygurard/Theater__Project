@@ -6,6 +6,26 @@
 <body>
 	<div class="formBox" id="list">
 		<h2>관리자용 영화리스트</h2>
+		<form action="ListMovieAdmin.do" method="GET" id="id_searchForm">
+			<input type="hidden" id="id_currYn" name = "currYn" value = "N">
+			<span>
+				<select name="search">
+					<option value="ALL" ${param.search == "ALL" ? 'selected' : ''} >전체</option>
+					<option value="TITLE" ${param.search == "TITLE" ? 'selected' : ''}>제목</option>
+					<option value="DIRECTOR" ${param.search == "DIRECTOR" ? 'selected' : ''}>감독</option>
+					<option value="ACTOR" ${param.search == "ACTOR" ? 'selected' : ''}>배우</option>
+				</select>
+			</span>
+			<span>
+				<input name="word" type="text" placeholder="검색어를 입력하세요" value="${param.word}">
+				<button onclick= onClickSearch() >검색</button>
+			</span>
+		</form>
+		<div class="now">
+			<input type="checkbox" id="id_currYnChk" value="N" ${param.currYn == "Y" ? 'checked' : ''}>
+			<label id="id_currYnTxt" for="id_currYnChk" style="cursor: pointer; ">현재 상영작만 보기</label>
+		</div>
+		
 			<table>
 				<colgroup>
 					<col style="width:70px">
@@ -85,6 +105,25 @@
 	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
+<script>
+	$(document).ready(function() {
+		$('#id_currYnChk').change(function(){
+			onClickSearch();
+		});
+	});
+
+	function onClickSearch() {
+		if($('#id_currYnChk').is(":checked") == true){
+			$('#id_currYn').val("Y");			 
+		}else if($('#id_currYnChk').is(":checked") == false){
+			$('#id_currYn').val("N");
+		}
+		$("#id_searchForm").submit();
+	}
+	if($('#id_show').click(function() {
+		$('#show').val("Y");
+	}));
+</script>
 
 
 
