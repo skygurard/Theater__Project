@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.movie.mybatis.MovieMapper">
-	<!-- 리스트 -->
+	<!-- 영화 리스트 -->
 	<select id= "getAllMovie" parameterType="hashMap" resultType="MovieBean">
 		SELECT *
 		FROM (
@@ -54,6 +54,7 @@
 		WHERE RNUM <![CDATA[>=]]> #{start}
 	</select>
 	
+	<!-- 삭제된 영화 리스트 -->
 	<select id= "getDeletedMovie" parameterType="hashMap" resultType="MovieBean">
 		SELECT *
 		FROM (
@@ -105,12 +106,6 @@
 		WHERE RNUM <![CDATA[>=]]> #{start}
 	</select>
 	
-	
-	
-	
-	
-	
-	
 	<!-- 영화등록 -->
 	<insert id = "insertMovie" parameterType="MovieBean">
 		INSERT INTO MOVIE(
@@ -144,6 +139,8 @@
 			, 'A'
 		)
 	</insert>
+	
+	<!-- 영화 정보 뽑아오기 -->
 	<select id = "getSelectOneMovie" parameterType="Integer" resultType="MovieBean">
 		SELECT  NO
               , TITLE
@@ -160,47 +157,52 @@
 		FROM MOVIE
 		WHERE NO = #{no}
 	</select>
+	
+	
 	<select id= "showAllMovie" parameterType="hashMap" resultType="MovieBean">
 		SELECT *
 		        FROM (
-		                SELECT  NO
-		                      , TITLE
-		                      , AGE
-		                      , POSTERIMG
-		                FROM MOVIE
-		                ORDER BY NO DESC
-		            ) 
+	                  SELECT  NO
+	                        , TITLE
+	                        , AGE
+	                        , POSTERIMG
+	                  FROM MOVIE
+	                  ORDER BY NO DESC
+		             ) 
 	</select>
+	
+	<!-- 영화 삭제 -->
 	<update id="deleteMovie" parameterType="MovieBean">
-<!-- 		DELETE FROM MOVIE WHERE NO = #{no} -->
 		UPDATE MOVIE
 		SET
-			DB_STATUS = 'D'
-			WHERE NO  = #{no}
+		DB_STATUS = 'D'
+		WHERE NO  = #{no}
 	</update>
 	
+	<!-- 삭제된 영화 복원 -->
 	<update id="restoreMovie" parameterType="MovieBean">
 		UPDATE MOVIE
 		SET
-			DB_STATUS = 'A'
-			WHERE NO  = #{no}
+		DB_STATUS = 'A'
+		WHERE NO  = #{no}
 			
 	</update>
 	
+	<!-- 영화 수정 -->
 	<update id="modifyMovie" parameterType="MovieBean">
 		UPDATE MOVIE SET
-			  TITLE = #{title}
-            , DIRECTOR = #{director}
-            , ACTOR = #{actor}
+			  TITLE 	  = #{title}
+            , DIRECTOR 	  = #{director}
+            , ACTOR 	  = #{actor}
             , RELEASEDATE = #{releaseDate}
-            , ENDDATE = #{endDate}
+            , ENDDATE 	  = #{endDate}
             , RUNNINGTIME = #{runningTime}
-            , COUNTRY = #{country}
-            , INFO = #{info}
-            , POSTERIMG = #{posterImg}
-            , GENRE = #{genre}
-            , AGE = #{age}
-		WHERE NO = #{no}
+            , COUNTRY 	  = #{country}
+            , INFO 		  = #{info}
+            , POSTERIMG   = #{posterImg}
+            , GENRE 	  = #{genre}
+            , AGE 		  = #{age}
+		WHERE NO 		  = #{no}
 	</update>
 
 	<!-- 전체 영화리스트 수 -->
@@ -208,8 +210,7 @@
 		SELECT COUNT(*) AS TOTAL FROM MOVIE
 	</select>
 	
-	
-	
+<!-- 	영화 영구삭제 쿼리 -->		
 <!-- 	<delete id="deleteMovie" parameterType="Integer"> -->
 <!-- 		DELETE FROM MOVIE WHERE NO = #{no} -->
 <!-- 	</delete> -->

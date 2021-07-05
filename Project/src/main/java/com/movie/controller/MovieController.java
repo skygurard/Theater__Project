@@ -51,7 +51,14 @@ public class MovieController {
 	@Autowired
 	MemberDao memberDao;
 
-	// 관리자 페이지 매핑
+	
+	
+	///////////////////////////////////////////////////////////////////////
+	// 관리자 페이지 매핑///////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////
+	
+	
+	
 	@GetMapping("/InsertMovieForm.do")
 	public String insertMovieForm() {
 		return "movie/admin/insert_movie";
@@ -261,7 +268,7 @@ public class MovieController {
 		movieBean = movieDao.getSelectOneMovie(no);
 		model.addAttribute("movieBean", movieBean);
 
-		return "movie/admin/delete_movie_form_admin";
+		return "movie/admin/deleted_movie_form_admin";
 	}
 
 	@RequestMapping("/DeleteMovie.do")
@@ -400,10 +407,12 @@ public class MovieController {
 	}
 	
 	
+	
 
 	///////////////////////////////////////////////////////////////////////
 	// user페이지 매핑///////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////
+	
 	
 	
 	@GetMapping("/ListMovie.do")
