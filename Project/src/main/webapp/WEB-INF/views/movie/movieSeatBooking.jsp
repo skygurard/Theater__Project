@@ -35,12 +35,12 @@
       </li>
 
       <li>
-        <div class="seat selected"></div>
+        <div class="seat selected" id="selected"></div>
         <small>선택하신 좌석</small>
       </li>
 
       <li>
-        <div class="seat occupied"></div>
+        <div class="seat occupied" id="occupied"></div>
         <small>이미 예약된 좌석</small>
       </li>
     </ul>

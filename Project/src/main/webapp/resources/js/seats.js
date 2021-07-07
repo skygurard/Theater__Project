@@ -7,6 +7,43 @@ const movieSelect = document.getElementById('movie');
 populateUI();
 let ticketPrice = 10000;
 
+$(document).ready( 
+  function clearSeat(){
+    var val;
+    document.getElementById("count").innerHTML="0";
+    document.getElementById("total").innerHTML="0";
+    
+    $(".seat").attr("class","seat");
+    }
+  )
+
+  
+
+$(function(){
+  $(".seat").click(function(){
+    var inputVal= $(this).attr('value');
+
+      if($(this).hasClass("choice")===true)
+      {
+        for(var i = 0; i < reserveSeat.length; i++) {
+          if(reserveSeat[i] === inputVal)  {
+            reserveSeat.splice(i, 1);
+            i--;
+            }
+          $(this).removeClass("choice");
+         }
+      
+      }else{
+       
+        $(this).addClass("choice");
+        reserveSeat.push(inputVal);
+        $("input[name='reserveSeat']").attr("value",reserveSeat);
+      }
+      console.log(reserveSeat);
+      console.log(inputVal);
+    });
+});
+
 // 영화 데이터
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);

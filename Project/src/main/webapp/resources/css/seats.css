@@ -47,7 +47,13 @@ body {
   font-size: 15px;
   color: #fff;
 }
+#selected{
+	background-color: #6feaf6;
+}
 
+#occupied{
+	 background-color: #fff;
+}
 .seat.selected {
   background-color: #6feaf6;
 }
