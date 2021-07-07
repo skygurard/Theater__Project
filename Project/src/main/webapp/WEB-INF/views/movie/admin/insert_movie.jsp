@@ -94,7 +94,7 @@
 </body>
 </html>
 <script>
-$(function() {
+$(document).ready(function() {
 	
 	$("#ListMovieAdmin").on("click", function() {
 		$(location).attr("href", "ListMovieAdmin.do");
@@ -127,74 +127,75 @@ $(function() {
 	        $("#endDate").datepicker( "option", "minDate", selectedDate );
 	    }                
 	});
-
-       //종료일
-    $('#endDate').datepicker({
-        showOn: "both", 
-        buttonImage: "images/calendar.png", 
-        buttonImageOnly : true,
-        buttonText: "날짜선택",
-        dateFormat: "yy-mm-dd",
-        changeMonth: true,
-        //minDate: 0, // 오늘 이전 날짜 선택 불가
-        onClose: function( selectedDate ) {
-            // 종료일(endDate) datepicker가 닫힐때
-            // 시작일(releaseDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-            $("#releaseDate").datepicker( "option", "maxDate", selectedDate );
-        }                
-    });
-});
-	 
-$("#joinForm #join").on("click",function(){
-	var isGenre = $("input:checkbox[name='genre']").is(":checked");
-	var isAge = $("input:radio[name='age']").is(':checked');
 	
-    if($(".title").val().length<=0) {
-        alert("제목은 필수 입력 사항입니다.");
-        $(".title").focus();
-        return false;
-    } else if($(".director").val().length<=0){
-        alert("감독은 필수 입력 사항입니다.");
-        $(".director").focus();
-        return false;
-    } else if($(".actor").val().length<=0){
-        alert("배우는 필수 입력 사항입니다.");
-        $(".actor").focus();
-        return false;
-    } else if(!isGenre) {
-    	alert("장르를 한 개 이상 선택하세요.");
-        $(".genre").focus();
-        return false;
-    }  else if($(".releaseDate").val().length<=0){
-        alert("개봉일 필수 입력 사항입니다.");
-        $(".releaseDate").focus();
-        return false;
-    } else if($(".endDate").val().length<=0){
-        alert("상영종료일은 필수 입력 사항입니다.");
-        $(".endDate").focus();
-        return false;
-    } else if($(".runningTime").val().length<=0){
-        alert("상영시간 필수 입력 사항입니다.");
-        $(".runningTime").focus();
-        return false;
-    } else if(!isAge) {
-    	alert("관람가는 필수 입력 사항입니다.");
-    	$(".age").focus();
-    	return false;
-    } else if($(".country").val().length<=0){
-        alert("국가는 필수 입력 사항입니다.");
-        $(".country").focus();
-        return false;
-    } else if($(".info").val().length<=0){
-        alert("영화정보는 필수 입력 사항입니다.");
-        $(".info").focus();
-        return false;
-    } else if($("#posterImg").val().length<=0){
-        alert("사진은 필수 입력 사항입니다.");
-        $(".posterImg").focus();
-        return false;
-    } else {
-    	$("#joinForm").submit();
-    }
+	//종료일
+	$('#endDate').datepicker({
+	    showOn: "both", 
+	    buttonImage: "images/calendar.png", 
+	    buttonImageOnly : true,
+	    buttonText: "날짜선택",
+	    dateFormat: "yy-mm-dd",
+	    changeMonth: true,
+	    //minDate: 0, // 오늘 이전 날짜 선택 불가
+	    onClose: function( selectedDate ) {
+	        // 종료일(endDate) datepicker가 닫힐때
+	        // 시작일(releaseDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+	        $("#releaseDate").datepicker( "option", "maxDate", selectedDate );
+	    }                
+	});
+	
+		 
+	$("#joinForm #join").on("click",function(){
+		var isGenre = $("input:checkbox[name='genre']").is(":checked");
+		var isAge = $("input:radio[name='age']").is(':checked');
+		
+	    if($(".title").val().length<=0) {
+	        alert("제목은 필수 입력 사항입니다.");
+	        $(".title").focus();
+	        return false;
+	    } else if($(".director").val().length<=0){
+	        alert("감독은 필수 입력 사항입니다.");
+	        $(".director").focus();
+	        return false;
+	    } else if($(".actor").val().length<=0){
+	        alert("배우는 필수 입력 사항입니다.");
+	        $(".actor").focus();
+	        return false;
+	    } else if(!isGenre) {
+	    	alert("장르를 한 개 이상 선택하세요.");
+	        $(".genre").focus();
+	        return false;
+	    }  else if($(".releaseDate").val().length<=0){
+	        alert("개봉일 필수 입력 사항입니다.");
+	        $(".releaseDate").focus();
+	        return false;
+	    } else if($(".endDate").val().length<=0){
+	        alert("상영종료일은 필수 입력 사항입니다.");
+	        $(".endDate").focus();
+	        return false;
+	    } else if($(".runningTime").val().length<=0){
+	        alert("상영시간 필수 입력 사항입니다.");
+	        $(".runningTime").focus();
+	        return false;
+	    } else if(!isAge) {
+	    	alert("관람가는 필수 입력 사항입니다.");
+	    	$(".age").focus();
+	    	return false;
+	    } else if($(".country").val().length<=0){
+	        alert("국가는 필수 입력 사항입니다.");
+	        $(".country").focus();
+	        return false;
+	    } else if($(".info").val().length<=0){
+	        alert("영화정보는 필수 입력 사항입니다.");
+	        $(".info").focus();
+	        return false;
+	    } else if($("#posterImg").val().length<=0){
+	        alert("사진은 필수 입력 사항입니다.");
+	        $(".posterImg").focus();
+	        return false;
+	    } else {
+	    	$("#joinForm").submit();
+	    }
+	});
 });
 </script>

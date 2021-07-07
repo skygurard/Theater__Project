@@ -225,8 +225,6 @@ $(document).ready(function() {
 	    	$("#joinForm").submit();
 	    }
 	});	
-
-
 });
 
 </script>
