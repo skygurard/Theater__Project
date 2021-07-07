@@ -20,31 +20,56 @@ $(document).ready(
 
   
 
-$(function(){
-  $(".seat").click(function(){
-    var inputVal= $(this).attr('value');
-
-      if($(this).hasClass("choice")===true)
-      {
-        for(var i = 0; i < reserveSeat.length; i++) {
-          if(reserveSeat[i] === inputVal)  {
-            reserveSeat.splice(i, 1);
-            i--;
-            }
-          $(this).removeClass("choice");
-         }
+  $(function(){
+    $(".seat").click(function(){
+      var inputVal= $(this).attr('value');
+  
+        if($(this).hasClass("choice")===true)
+        {
+          for(var i = 0; i < reserveSeat.length; i++) {
+            if(reserveSeat[i] === inputVal)  {
+              reserveSeat.splice(i, 1);
+              i--;
+              }
+            $(this).removeClass("choice");
+           }
+        
+        }else{
+         
+          $(this).addClass("choice");
+          reserveSeat.push(inputVal);
+          
+        }
+        console.log(reserveSeat);
+        console.log(inputVal);
+        Seat=reserveSeat.join(',');
+        console.log(Seat);
+        $("input[name='reserveSeat']").attr("value",Seat);
+  
+  
+      });
       
+      
+      
+      
+  });
+  
+  
+  function check(){
+    const choice=document.querySelector('choice');
+      if(choice !== null){
+      var msg=confirm("선택한 좌석으로 예매하시겠습니까?");
+      if(msg){
+        
       }else{
-       
-        $(this).addClass("choice");
-        reserveSeat.push(inputVal);
-        $("input[name='reserveSeat']").attr("value",reserveSeat);
+        return false;
       }
-      console.log(reserveSeat);
-      console.log(inputVal);
-    });
-});
-
+    }else{
+      alert("좌석을 선택해주세요")
+      return false;
+    }
+          
+    };
 // 영화 데이터
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);

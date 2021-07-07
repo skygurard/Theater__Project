@@ -210,16 +210,16 @@ moveSeatButton.addEventListener('click', function() {
     ) {
         moveSeatForm.submit();
     } else {
-        toastr.options = {
-            positionClass: 'toast-top-full-width',
-            progressBar: true,
-            timeOut: 1000,
-        };
-        toastr.error(
-            '<div style="color:white">모든 항목을 체크해 주세요</div>',
-            '<div style="color:white">경고</div>', {
-                timeOut: 3000,
-            }
-        );
+        console.log("click");
+        if(!inputTitle.value){
+            alert("영화을 선택 해주세요");
+        }else  if(!inputSelectedTheater.value){
+            alert("극장을 선택 해주세요");
+        }else  if(!inputReserveDate.value){
+            alert("날짜을 선택 해주세요");
+        }else  if(!inputRunningTime.value){
+            alert("시간을 선택 해주세요");
+        }
+        
     }
 });

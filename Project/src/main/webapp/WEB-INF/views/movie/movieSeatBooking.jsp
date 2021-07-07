@@ -118,7 +118,7 @@
       선택한 좌석은 <span id="count">0</span> 결제하실 가격은<span id="total">0</span>
     </p>
     <div>
-      <form action="kakaoPay.do" method="GET"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
+      <form action="kakaoPay.do" method="GET" onsubmit="return check()"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
         <input type="hidden" class="title" name="title">
         <input type="hidden" class="movieAge" name="movieAge">
         <input type="hidden" class="selectedTheater" name="selectedTheater">
