@@ -47,11 +47,7 @@ $(document).ready(
         $("input[name='reserveSeat']").attr("value",Seat);
   		$("#seatNum").text(reserveSeat);  		
 
-      console.log(count1);
-      var total1= document.getElementById("total").innerHTML;
-      var count1 =document.getElementById("count").innerHTML;
-      $("input[name='seatsIndex']").attr("value",count1);
-      $("input[name='moviePrice']").attr("value",total1);
+      
   
       });
       
@@ -96,6 +92,12 @@ function updateSelectedCount() {
 
   count.innerHTML = selectedSeatsCount;
   total.innerHTML = selectedSeatsCount * 10000;
+
+  console.log(count1);
+      var total1= document.getElementById("total").innerHTML;
+      var count1 =document.getElementById("count").innerHTML;
+      $("input[name='seatsIndex']").attr("value",count1);
+      $("input[name='moviePrice']").attr("value",total1);
 }
 
 // get data from localstorage and populate ui
