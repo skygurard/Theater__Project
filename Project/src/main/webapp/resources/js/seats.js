@@ -56,7 +56,7 @@ $(document).ready(
   
   
   function check(){
-    const choice=document.querySelector('choice');
+    const choice=document.querySelector('.choice');
       if(choice !== null){
       var msg=confirm("선택한 좌석으로 예매하시겠습니까?");
       if(msg){
