@@ -127,7 +127,7 @@
         <input type="hidden" class="selectedTheater" name="selectedTheater" value="<%=selectedTheater %>">
         <input type="hidden" class="reserveDate" name="movieDate" value="<%=movieDate %>">
         <input type="hidden" class="runningTime" name="runningTime" value="<%=runningTime %>">
-        <input type="hidden" class="reserveSeat" name="reserveSeat" value="">
+        <input type="hidden" class="reserveSeat" name="reserveSeat">
         <input type="hidden" class="total" name="total" value="total">
         <input type="submit" value="예매하기">
         <input type="reset" value="좌석 다시 선택하기">
