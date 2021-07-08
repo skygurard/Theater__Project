@@ -17,13 +17,13 @@
     String selectedTheater = request.getParameter("selectedTheater");
     String movieDate = request.getParameter("movieDate");
     String runningTime = request.getParameter("runningTime");
-    String total = request.getParameter("total");
+
     String moviePrice=request.getParameter("moviePrice");
  	String seatsIndex=request.getParameter("seatsIndex");
 
     %>
      
-      <label id="movie"><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관, 가격<%=total %> </label>
+      <label id="movie"><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관, 가격</label>
 
 	<p>
 		<p>카카오페이 결제하기</p>
