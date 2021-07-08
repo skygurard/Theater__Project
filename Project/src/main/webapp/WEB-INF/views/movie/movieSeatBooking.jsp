@@ -115,17 +115,20 @@
     </div>
 
     <p class="text">
-      선택한 좌석은 <span id="count">0</span> 결제하실 가격은<span id="total">0</span>
+       좌석은 <span id="count">0</span> 결제하실 가격은<span id="total">0</span>
     </p>
+
+    <div id=seatNum></div>
+    
     <div>
       <form action="kakaoPay.do" method="GET" onsubmit="return check()"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
-        <input type="hidden" class="title" name="title">
-        <input type="hidden" class="movieAge" name="movieAge">
-        <input type="hidden" class="selectedTheater" name="selectedTheater">
-        <input type="hidden" class="reserveDate" name="movieDate">
-        <input type="hidden" class="runningTime" name="runningTime">
-        <input type="hidden" class="seatsIndex" name="seatsIndex">
-        <input type="hidden" class="moviePrice" name="moviePrice">
+        <input type="hidden" class="title" name="title" value="<%=title %>">
+        <input type="hidden" class="movieAge" name="movieAge" value="<%=age %>">
+        <input type="hidden" class="selectedTheater" name="selectedTheater" value="<%=selectedTheater %>">
+        <input type="hidden" class="reserveDate" name="movieDate" value="<%=movieDate %>">
+        <input type="hidden" class="runningTime" name="runningTime" value="<%=runningTime %>">
+        <input type="hidden" class="reserveSeat" name="reserveSeat" value="">
+        <input type="hidden" class="total" name="total" value="total">
         <input type="submit" value="예매하기">
         <input type="reset" value="좌석 다시 선택하기">
       </form>

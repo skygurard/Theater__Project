@@ -45,7 +45,7 @@ $(document).ready(
         Seat=reserveSeat.join(',');
         console.log(Seat);
         $("input[name='reserveSeat']").attr("value",Seat);
-  
+  		$("#seatNum").text(reserveSeat);  		
   
       });
       
@@ -88,8 +88,8 @@ function updateSelectedCount() {
 
   const selectedSeatsCount = selectedSeats.length;
 
-  count.innerText = selectedSeatsCount;
-  total.innerText = selectedSeatsCount * 10000;
+  count.innerHTML = selectedSeatsCount;
+  total.innerHTML = selectedSeatsCount * 10000;
 }
 
 // get data from localstorage and populate ui

@@ -10,13 +10,23 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
-
+	    <%
+    request.setCharacterEncoding("UTF-8");
+    String title= request.getParameter("title");
+    String age = request.getParameter("movieAge");
+    String selectedTheater = request.getParameter("selectedTheater");
+    String movieDate = request.getParameter("movieDate");
+    String runningTime = request.getParameter("runningTime");
+    String total = request.getParameter("total");
+    %>
+     
+      <label id="movie"><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관, 가격<%=total %> </label>
 
 	<p>
 		<p>카카오페이 결제하기</p>
 		<button id="check_module" type="button"><img src="images/payment_icon_yellow_medium.png"></button>
 	</p>
-
+	
 
     <script>
     $(function(){
