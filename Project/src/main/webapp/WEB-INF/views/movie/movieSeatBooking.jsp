@@ -9,11 +9,14 @@
 <title>Movie Seat Booking</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/seats.css">
+
 <link rel="stylesheet" href="css/reset.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
+<%@ include file="include/header_seat.jsp"%>
+<link rel="stylesheet" href="css/seats.css">
 <body>
+	
     <div class="movie-container">
     <%
     request.setCharacterEncoding("UTF-8");
@@ -137,6 +140,7 @@
     <script src="js/seats.js"></script>
 
 </body>
+<%@ include file="include/footer_seat.jsp"%>
 
 
 
