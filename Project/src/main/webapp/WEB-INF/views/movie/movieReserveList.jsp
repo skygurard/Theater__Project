@@ -186,6 +186,7 @@ href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195
         <div>
             <form class="moveSeatForm" action="movieSeatBooking.do"
                 method="post">
+                <input type="hidden" class="userId" name= userId value="${loggedMemberInfo.id}">
                 <input type="hidden" class="title" name="title" value="${inputTitle.value }"> 
                 <input type="hidden" class="movieAge" name="movieAge" value="${movieAge.value }" > 
                 <input type="hidden" class="selectedTheater" name="selectedTheater" value="${inputSelectedTheater.value }">

@@ -25,6 +25,7 @@
     String selectedTheater = request.getParameter("selectedTheater");
     String movieDate = request.getParameter("movieDate");
     String runningTime = request.getParameter("runningTime");
+    String userId = request.getParameter("userId");
     %>
      
       <label id="movie"><%=title %>(<%=age %>)<%=runningTime %>분<%=movieDate %><%=selectedTheater %>상영관 </label>
@@ -124,7 +125,8 @@
     <div id=seatNum></div>
     
     <div>
-      <form action="kakaoPay.do" method="GET" onsubmit="return check()"> <!-- 일단 경수씨 GET방식에 따라 설정 -->
+      <form action="kakaoPay.do" method="POST" onsubmit="return check()"> 
+      <input type="hidden" class="userId" name= userId value="<%=userId%>">
         <input type="hidden" class="title" name="title" value="<%=title %>">
         <input type="hidden" class="movieAge" name="movieAge" value="<%=age %>">
         <input type="hidden" class="selectedTheater" name="selectedTheater" value="<%=selectedTheater %>">

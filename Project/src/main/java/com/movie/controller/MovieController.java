@@ -454,15 +454,16 @@ public class MovieController {
 		return "movie/user/view_movie";
 	}
 
-	@GetMapping("/MovieReserveList.do")
+	@RequestMapping("/MovieReserveList.do")
 	public String movieList(Model model) {
 		List<MovieBean> movieList = movieDao.showAllMovie();
 		model.addAttribute("movieList", movieList);
+		String logId= loggedMemberInfo.getPassword();
 		
 		return "movie/movieReserveList";
 	}
 
-	@GetMapping("/Main.do")
+	@RequestMapping("/Main.do")
 	public String viewMain(Model model) {
 		List<MovieBean> movieList = movieDao.showAllMovie();
 		model.addAttribute("movieList", movieList);

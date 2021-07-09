@@ -19,7 +19,7 @@ import com.movie.model.movieReserveBean;
 import com.movie.model.movieReserveDao;
 import com.movie.utils.ScriptWriterUtil;
 
-@Controller
+
 public class MovieReserveController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MovieReserveController.class);

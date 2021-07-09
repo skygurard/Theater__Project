@@ -200,9 +200,9 @@ public class MemberController {
 			session.setAttribute("loggedMemberInfo", loggedMemberInfo);
 			
 			if(loggedMemberInfo.getGrade() == 2 || loggedMemberInfo.getGrade()==1) {
-				ScriptWriterUtil.alertAndNext(response, "로그인 되었습니다.", "BoardAdmin	List.do");
+				ScriptWriterUtil.alertAndNext(response, "로그인 되었습니다.", "Main.do");
 			}else {
-				ScriptWriterUtil.alertAndNext(response, "로그인 되었습니다.", "BoardList.do");
+				ScriptWriterUtil.alertAndNext(response, "로그인 되었습니다.", "Main.do");
 			}
 			
 			//로그인이 되었당.

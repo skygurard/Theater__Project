@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class KakaoPayController {
 
-	@RequestMapping(value="/kakaoPay.do",method = RequestMethod.GET)
+	@RequestMapping(value="/kakaoPay.do",method = RequestMethod.POST)
 	public String movieSeatBooking() {
 		return "movie/kakaoPay";
 	}

@@ -15,6 +15,7 @@
     rel="shortcut icon"
     href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/CJ_logo.svg/1195px-CJ_logo.svg.png"
   />
+  <script src="js/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV 영화예매 페이지</title>
 </head>
@@ -29,11 +30,12 @@
                     <c:choose>
                         <c:when test="${loggedMemberInfo!=null }">
                             <ul class="menu1">
-                                <li>${loggedMemberInfo.name}님 환영합니다.</li>
+                                <li class="userId">${loggedMemberInfo.name}님 환영합니다.</li>
                                 <li><a href="MemberInfo.do?no=${loggedMemberInfo.no}">회원정보수정</a></li>
                                 <li><a href="BoardWriteForm.do">글쓰기</a></li>
                                 <c:if test="${loggedMemberInfo.grade == 3}">
                                     <a href="ListMovie.do">영화목록</a>
+                                    <a href="MemberReserveList.do">영화예매내역</a>
                                 </c:if>
                                 <li><a href="MemberLogOut.do">로그아웃</a></li>
                                 <%-- <li>${loggedMemberInfo.name}</li> --%>
@@ -75,7 +77,7 @@
           </div>
         </section>
     <section class="movieSelection"> 
-        <!-- 예고편 넣는 곳 -->
+        
         <div class="movieList" id="momvieList">
             <img class="borderImage" src="https://img.cgv.co.kr/R2014/images/title/h3_movie_selection.gif" alt="#">
         </div>
@@ -123,5 +125,6 @@
         </footer>
     </div>
     <script src="js/slide.js"></script>
+  
 </body>
 </html>

@@ -8,6 +8,8 @@
 		<typeAlias type="com.movie.model.movieReserveBean" alias="movieReserveBean" />
 		<typeAlias type="com.movie.model.board.ReplyBoardBean" alias="ReplyBoardBean"   />
 		<typeAlias type="com.movie.model.member.MemberBean" alias="MemberBean"   />
+		<typeAlias type="com.movie.model.member.ReserveBean" alias="ReserveBean"   />
+		<typeAlias type="com.movie.model.member.ReserveDao" alias="ReserveDao"   />
 		<typeAlias type="com.movie.model.admin.AdminBean" alias="AdminBean"   />
 	</typeAliases>
 	<environments default="development">
@@ -23,7 +25,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/movie/mybatis/MovieMapper.xml" />
-		<mapper resource="com/movie/mybatis/movieReserveMapper.xml" />
+		<mapper resource="com/movie/mybatis/ReserveMapper.xml" />
 		<mapper resource="com/movie/mybatis/BoardMapper.xml" />
 	</mappers>
 </configuration>

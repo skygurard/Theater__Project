@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movie.mybatis.ReserveMapper">
+
+
+<!-- 영화예매페이지 보여주기 -->
+	<insert id="movieReserve" parameterType="ReserveBean">
+		<!-- 시퀀스를 직접 입력 못함. 그래서 SYSDBA가 가지고 있는 DUAL Table을 이용한 편법 사용 -->
+		
+		INSERT INTO RESERVE VALUES (
+										#{userId},
+										#{selectedTheater},
+										#{movieDate},
+										#{runningTime},
+										#{title},
+										#{age},
+										#{reserveSeat}										
+										
+									   )
+	</insert>
+	
+		<select id="getSelectOneReserve" parameterType="String" resultType="ReserveBean">
+		SELECT * FROM RESERVE WHERE USERID = #{userId}
+	</select>
+
+</mapper>
