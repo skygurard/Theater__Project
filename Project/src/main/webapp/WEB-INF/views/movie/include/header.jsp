@@ -21,26 +21,29 @@
 <link href="css/layout.css" rel="stylesheet">
 </head>
 <header id="header">
-	<h1 id="logo"><a href="BoardList.do">Movie Ticket</a></h1>
+	<h1 id="logo"><a href="Main.do">Movie Cinema</a></h1>
 	<nav id="gnb">
 		<c:choose>
-			
 			<c:when test="${loggedMemberInfo!=null }">
-				<ul>
+			<ul>
+			<c:if test="${loggedMemberInfo.grade == 3}">
+				
 					<li>${loggedMemberInfo.name}님 환영합니다.</li>
 					<li><a href="MemberInfo.do?no=${loggedMemberInfo.no}">회원정보수정</a></li>
-					<li><a href="BoardWriteForm.do">글쓰기</a></li>
-					<c:if test="${loggedMemberInfo.grade == 3}">
-						<a href="ListMovie.do">영화목록</a>
+					<li><a href="BoardWriteForm.do">영화리뷰쓰기</a></li>
+					<li><a href="ListMovie.do">영화목록</a></li>
+					<li><a href="MemberReserveList.do">예매내역</a></li>
+					<li><a href="MemberLogOut.do">로그아웃</a></li>
 					</c:if>
 					<c:if test="${loggedMemberInfo.grade <= 2}">
-						<a href="MemberList.do">회원 관리</a>
-						<a href="InsertMovieForm.do">영화정보입력</a>
-						<a href="ListMovieAdmin.do">영화리스트보기</a>
+						<li>관리자 전용페이지입니다</li>
 						
+						<li><a href="MemberList.do">회원 관리</a></li>
+						<li><a href="InsertMovieForm.do">영화정보입력</a></li>
+						<li><a href="ListMovieAdmin.do">영화리스트보기</a></li>
+						<li><a href="MemberLogOut.do">로그아웃</a></li>
 					</c:if>
-					<li><a href="MemberLogOut.do">로그아웃</a></li>
-					<%-- <li>${loggedMemberInfo.name}</li> --%>
+					
 					
 				</ul>
 				

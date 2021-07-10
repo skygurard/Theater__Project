@@ -12,15 +12,15 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>NAME</th>
+						<th>닉네임</th>
 						<td>${replyBoardBean.name}</td>
 					</tr>
 					<tr>
-						<th>SUBJECT</th>
+						<th>영화제목</th>
 						<td>${replyBoardBean.subject}</td>
 					</tr>
 					<tr>
-						<th>PASSWORD</th>
+						<th>비밀번호</th>
 						<td><input type="password" name="password" id="userPassword"></td>
 					</tr>
 				</tbody>

@@ -6,7 +6,7 @@
 <%@ include file="../include/header.jsp" %>
 <body>
 	<div class="formBox">
-		<h2>자유게시판</h2>
+		<h2>익명 리뷰게시판</h2>
 		<form action="BoardRewrite.do" id="joinForm" method="POST">
 			<table>
 				<colgroup>

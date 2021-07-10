@@ -5,7 +5,7 @@
 <%@ include file="../include/header.jsp" %>
 <body>
 	<div class="formBox">
-		<h2>자유게시판</h2>
+		<h2>익명 리뷰 게시판</h2>
 		<form id="joinForm" method="POST">
 			<table>
 				<colgroup>
@@ -16,23 +16,23 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>NAME</th>
+						<th>닉네임</th>
 						<td>${replyBoardBean.name}</td>
 						<th>HIT</th>
 						<td>${replyBoardBean.readCount}</td>
 					</tr>
 					<tr>
-						<th>E-MAIL</th>
+						<th>한줄평</th>
 						<td>${replyBoardBean.email}</td>
 						<th>DATE</th>
 						<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${replyBoardBean.regDate}" /></td>
 					</tr>
 					<tr>
-						<th>SUBJECT</th>
+						<th>영화제목</th>
 						<td colspan="3">${replyBoardBean.subject}</td>
 					</tr>
 					<tr>
-						<th>CONTENTS</th>
+						<th>리뷰내용</th>
 						<td colspan="3">
 							<div name="contents" id="summernote" readonly>${replyBoardBean.contents}</div>
 						</td>

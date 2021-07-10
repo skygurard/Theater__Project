@@ -19,34 +19,33 @@
 				<tbody>
 
 					<tr>
-						<th>NAME</th>
+						<th>예매영화</th>
 						<td>${reserveBean.title }</td>
 					</tr>
 					
 					<tr>
-						<th>E-MAIL</th>
+						<th>상영관</th>
 						<td>${reserveBean.selectedTheater }</td>
 					</tr>
 					<tr>
-						<th>PHONE</th>
+						<th>예매일</th>
+						<td>${reserveBean.movieDate}</td>
+					</tr>
+					<tr>
+						<th>예매시간</th>
 						<td>${reserveBean.runningTime}</td>
 					</tr>
 					<tr>
-						<th>INTEREST</th>
+						<th>시청관람가</th>
 						<td>${reserveBean.age }</td>
 					</tr>
 					<tr>
-						<th>AGE</th>
+						<th>예매좌석</th>
 						<td>${reserveBean.reserveSeat }</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="btns">
-				<a href="MemberUpdateForm.do?no=${memberBean.no }">회원 수정</a>
-				<a href="MemberDeleteForm.do?no=${memberBean.no }">회원 탈퇴</a>
-				<!-- <a href="MemberList.do">회원 목록</a> -->
-				<!-- <a href="MemberJoinForm.do">회원 가입</a> -->
-			</div>
+		
 <!-- 		</form> -->
 	</div>
 	<%@ include file="../include/footer.jsp"%>

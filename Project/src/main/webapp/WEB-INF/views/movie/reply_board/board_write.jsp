@@ -5,7 +5,7 @@
 <%@ include file="../include/header.jsp" %>
 <body>
 	<div class="formBox">
-		<h2>자유게시판</h2>
+		<h2>익명 리뷰게시판</h2>
 		<form action="BoardWrite.do" id="joinForm" method="POST">
 			<table>
 				<colgroup>
@@ -14,23 +14,23 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>NAME</th>
+						<th>닉네임</th>
 						<td><input type="text" name="name" id="userName" value=""></td>
 					</tr>
 					<tr>
-						<th>E-MAIL</th>
+						<th>한줄평</th>
 						<td><input type="text" name="email" id="userEmail" value=""></td>
 					</tr>
 					<tr>
-						<th>SUBJECT</th>
+						<th>영화제목</th>
 						<td><input type="text" name="subject" id="subject" value=""></td>
 					</tr>
 					<tr>
-						<th>PASSWORD</th>
+						<th>비밀번호</th>
 						<td><input type="password" name="password" id="userPassword"></td>
 					</tr>
 					<tr>
-						<th>CONTENTS</th>
+						<th>리뷰내용</th>
 						<td><textarea name="contents" id="summernote"></textarea></td>
 					</tr>
 				</tbody>
